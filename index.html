@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rankitect — Design · Build · Rank</title>
+<meta name="description" content="Sites WordPress full custom + SEO organique. Une seule personne pour concevoir, construire et référencer votre site web.">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #FF6B6B;
+    --orange: #FFB347;
+    --yellow: #FFE66D;
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-400: #a3a3a3;
+    --gray-500: #737373;
+    --gray-600: #525252;
+    --gray-700: #404040;
+    --gradient: linear-gradient(135deg, var(--coral), var(--orange));
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--black);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Rubik', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-logo .grad {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFB347 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    color: var(--gray-600);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--coral); }
+
+  .nav-cta {
+    background: var(--gradient);
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600 !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.9; color: white !important; }
+
+  /* HERO */
+  .hero {
+    padding: 160px 24px 100px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-logo {
+    margin-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 .grad {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFB347 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--gray-600);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .hero-tag {
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--gray-100);
+    color: var(--gray-600);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: var(--gradient);
+    color: white;
+  }
+
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--black);
+    border: 1.5px solid var(--gray-200);
+  }
+
+  .btn-secondary:hover { border-color: var(--coral); color: var(--coral); }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 24px;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--coral);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--gray-500);
+    max-width: 560px;
+    margin-bottom: 56px;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card:hover {
+    border-color: var(--coral);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(255,107,107,0.08);
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--gray-100);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .service-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--gray-500);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+
+  .service-price {
+    font-family: 'Rubik', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* PORTFOLIO */
+  .portfolio-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .project-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 20px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: all 0.2s;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 12px 48px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+
+  .project-visual {
+    background: var(--gray-50);
+    padding: 48px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+  }
+
+  .project-placeholder {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 16/10;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--gray-400);
+    text-align: center;
+    padding: 16px;
+  }
+
+  .project-info {
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .project-tag {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .tag-build {
+    background: rgba(255,107,107,0.08);
+    color: var(--coral);
+  }
+
+  .tag-seo {
+    background: rgba(255,179,71,0.1);
+    color: #D4880F;
+  }
+
+  .tag-geo {
+    background: rgba(255,230,109,0.15);
+    color: #A68B00;
+  }
+
+  .project-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--gray-500);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .project-stats {
+    display: flex;
+    gap: 24px;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: 2px;
+  }
+
+  /* PROCESS */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .step {
+    text-align: center;
+    padding: 32px 20px;
+    position: relative;
+  }
+
+  .step-number {
+    font-family: 'Rubik', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.2;
+    margin-bottom: 12px;
+  }
+
+  .step-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--gray-500);
+    line-height: 1.5;
+  }
+
+  /* DIFFERENTIATOR */
+  .diff-section {
+    background: var(--gray-50);
+  }
+
+  .diff-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .diff-content h3 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .diff-content p {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .diff-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .diff-list li {
+    font-size: 14px;
+    color: var(--gray-600);
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .diff-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gradient);
+  }
+
+  .diff-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .compare-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+  }
+
+  .compare-label {
+    font-size: 13px;
+    color: var(--gray-500);
+    min-width: 100px;
+  }
+
+  .compare-bar {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--gray-200);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .compare-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--gradient);
+  }
+
+  .compare-value {
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 40px;
+    text-align: right;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+  }
+
+  .cta-section .section-label { color: var(--coral); }
+
+  .cta-section .section-title { color: var(--black); }
+
+  .cta-section .section-subtitle { color: var(--gray-500); margin-left: auto; margin-right: auto; }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: white;
+  }
+
+  .btn-whatsapp:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .btn-email {
+    background: transparent;
+    color: var(--black);
+    border: 1.5px solid var(--gray-200);
+  }
+
+  .btn-email:hover { border-color: var(--coral); color: var(--coral); }
+
+  /* FOOTER */
+  footer {
+    background: var(--white);
+    border-top: 1px solid var(--gray-200);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .footer-text {
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+
+  .footer-text .grad {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 16px; }
+    .project-card { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .diff-grid { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr !important; }
+    .section-title { font-size: 28px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 120px 16px 60px; }
+    section { padding: 60px 16px; }
+    .process-steps { grid-template-columns: 1fr; }
+    .project-stats { flex-wrap: wrap; }
+  }
+
+  /* ANIMATIONS */
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Rank<span class="grad">itect</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logo fade-in">
+    <svg width="80" height="80" viewBox="0 0 130 130">
+      <defs>
+        <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#FF6B6B"/>
+          <stop offset="100%" stop-color="#FFB347"/>
+        </linearGradient>
+      </defs>
+      <circle cx="65" cy="65" r="62" fill="url(#logo-grad)"/>
+      <path d="M40 54 L28 69 L40 84" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.65"/>
+      <path d="M90 54 L102 69 L90 84" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.65"/>
+      <path d="M65 86 L65 46" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M51 59 L65 42 L79 59" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+  </div>
+  <h1 class="fade-in delay-1">Un design. Un site. Du trafic.<br><span class="grad">Votre architecte de votre visibilité en ligne.</span></h1>
+  <p class="fade-in delay-2">Je conçois, construis et référence votre site WordPress. Il performe, il ranke, et il augmente vos revenus.</p>
+  <div class="hero-tags fade-in delay-3">
+    <span class="hero-tag">Design sur mesure</span>
+    <span class="hero-tag">WordPress full custom</span>
+    <span class="hero-tag">SEO organique</span>
+    <span class="hero-tag">GEO / IA</span>
+  </div>
+  <div class="hero-ctas fade-in delay-4">
+    <a href="#contact" class="btn btn-primary">Réserver un appel gratuit (45 min)</a>
+    <a href="#portfolio" class="btn btn-secondary">Voir mes résultats</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">Services</div>
+    <h2 class="section-title">Des offres claires, des résultats concrets</h2>
+    <p class="section-subtitle" style="max-width:100%;">Des offres conçues pour couvrir 100% des besoins de votre entreprise en ligne : design, création de site, visibilité sur Google, conversion de visiteurs en clients, copywriting et croissance organique. Se positionner sur les mots-clés que vos futurs clients recherchent déjà, doubler vos concurrents dans les résultats de recherche, et faire en sorte que chaque requête pertinente mène à vous.</p>
+    <div class="services-grid">
+
+      <div class="service-card" style="border-color: var(--coral); background: linear-gradient(135deg, rgba(255,107,107,0.03), rgba(255,179,71,0.03));">
+        <div class="service-icon">📞</div>
+        <div class="service-name">Appel découverte</div>
+        <div class="service-desc">45 minutes pour comprendre votre projet, vos objectifs et vos besoins. On dégrossit ensemble, sans engagement.</div>
+        <div class="service-price">Gratuit</div>
+        <a href="https://wa.me/VOTRE_NUMERO" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center;padding:12px 20px;font-size:14px;" target="_blank">💬 Réserver mon appel gratuit</a>
+      </div>
+
+      <div class="service-card" style="position:relative;overflow:hidden;">
+        <div style="position:absolute;top:18px;right:-30px;background:var(--gradient);color:white;font-size:10px;font-weight:700;padding:5px 36px;transform:rotate(45deg);letter-spacing:1px;text-transform:uppercase;text-align:center;line-height:1;">One shot</div>
+        <div class="service-icon">🤖</div>
+        <div class="service-name">Audit + déploiement GEO</div>
+        <div class="service-desc">Analyse de votre visibilité sur ChatGPT, Perplexity, Gemini. Diagnostic schema markup, llms.txt, et déploiement complet pour que les IA vous citent.</div>
+        <div class="service-price">500 €</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <div class="service-name">Accompagnement SEO mensuel</div>
+        <div class="service-desc">Stratégie pour dépasser vos concurrents et devenir visible : analyse de mots-clés stratégiques, rédaction d'articles de blog, suivi des données pour se positionner sur ce que vos clients recherchent. Compatible WordPress, Wix, Squarespace, Shopify, Podia — on s'adapte à votre plateforme. Sans engagement.</div>
+        <div class="service-price">800 €/mois</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <div class="service-name">Audit SEO complet du site web</div>
+        <div class="service-desc">SEO, GEO, design, copywriting, stratégie business et offres. Un diagnostic 360° de votre présence en ligne avec plan d'action concret.</div>
+        <div class="service-price">900 €</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <div class="service-name">Migration vers WordPress</div>
+        <div class="service-desc">Migration Wix, Squarespace ou autre vers WordPress. Conservation du SEO, redirections, architecture optimisée. SEO de base inclus : votre site sera positionné sur les mots-clés les plus pertinents et les requêtes déjà recherchées par vos futurs clients.</div>
+        <div class="service-price">~2 000 € <span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;-webkit-text-fill-color:var(--gray-500);background:none;">sans refonte design</span></div>
+        <div class="service-price" style="margin-top:4px;">~3 500 € <span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;-webkit-text-fill-color:var(--gray-500);background:none;">avec refonte design</span></div>
+        <div style="border:1px dashed var(--gray-200);border-radius:10px;padding:12px 14px;margin-top:16px;">
+          <div style="font-size:12px;font-weight:500;color:var(--gray-700);margin-bottom:3px;">📈 Optionnel — Après la migration : accompagnement SEO mensuel à tarif préférentiel</div>
+          <div style="font-size:11px;color:var(--gray-500);line-height:1.4;">Continuez à croître après la migration : articles de blog, suivi des positions, optimisations continues.</div>
+          <div style="font-family:'Rubik',sans-serif;margin-top:6px;display:flex;align-items:center;gap:8px;">
+            <span style="font-size:12px;font-weight:500;color:var(--gray-400);text-decoration:line-through;">800 €/mois</span>
+            <span style="font-size:14px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">600 €/mois</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <div class="service-name">Build WordPress full custom</div>
+        <div class="service-desc">Maquettes sur mesure, développement WordPress, SEO on-page, schema markup, architecture GEO-ready. SEO de base inclus : votre site sera optimisé dès le lancement pour ranker sur les requêtes stratégiques et convertir vos visiteurs en clients.</div>
+        <div class="service-price">3 500 – 7 500 €</div>
+        <div style="border:1px dashed var(--gray-200);border-radius:10px;padding:12px 14px;margin-top:16px;">
+          <div style="font-size:12px;font-weight:500;color:var(--gray-700);margin-bottom:3px;">📈 Optionnel — Après le lancement : accompagnement SEO mensuel à tarif préférentiel</div>
+          <div style="font-size:11px;color:var(--gray-500);line-height:1.4;">Pour continuer à croître après le lancement : articles de blog, suivi des positions, optimisations continues.</div>
+          <div style="font-family:'Rubik',sans-serif;margin-top:6px;display:flex;align-items:center;gap:8px;">
+            <span style="font-size:12px;font-weight:500;color:var(--gray-400);text-decoration:line-through;">800 €/mois</span>
+            <span style="font-size:14px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">600 €/mois</span>
+          </div>
+        </div>
+        <a href="#estimateur" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center;padding:12px 20px;font-size:14px;">Obtenir mon estimation en 1 clic</a>
+        <div style="font-size:11px;color:var(--gray-400);margin-top:8px;text-align:center;">À confirmer lors de l'appel découverte</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" style="background: var(--gray-50);">
+  <div class="section-inner">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Des projets, des résultats</h2>
+    <p class="section-subtitle">Des sites construits pour performer — et les chiffres qui le prouvent.</p>
+    <div class="portfolio-grid">
+
+      <!-- Smart BPJEPS -->
+      <div class="project-card">
+        <div class="project-visual">
+          <div class="project-placeholder">Capture d'écran<br>Smart BPJEPS<br><span style="font-size:11px;color:var(--gray-400);margin-top:8px;display:block;">Remplacer par screenshot</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span class="project-tag tag-build">Build</span>
+            <span class="project-tag tag-seo">SEO</span>
+            <span class="project-tag tag-geo">GEO</span>
+          </div>
+          <div class="project-name">Smart BPJEPS</div>
+          <div class="project-desc">Plateforme e-learning pour étudiants préparant le BPJEPS (diplôme national de coach sportif). Construite et développée de zéro, croissance 100% organique.</div>
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">×2</span>
+              <span class="stat-label">Impressions (11K → 21K/mois)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">×2.3</span>
+              <span class="stat-label">Clics (300 → 700/mois)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Go Proprio -->
+      <div class="project-card">
+        <div class="project-visual">
+          <div class="project-placeholder">Capture d'écran<br>Go Proprio<br><span style="font-size:11px;color:var(--gray-400);margin-top:8px;display:block;">Remplacer par screenshot</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span class="project-tag tag-build">Build WordPress</span>
+            <span class="project-tag tag-seo">SEO</span>
+          </div>
+          <div class="project-name">Go Proprio</div>
+          <div class="project-desc">Site WordPress full custom avec child theme sur mesure. Build complet : design, développement, SEO on-page, architecture optimisée pour le référencement.</div>
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">Custom</span>
+              <span class="stat-label">Child theme WordPress</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">SEO</span>
+              <span class="stat-label">Intégré dès le code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rooride -->
+      <div class="project-card">
+        <div class="project-visual">
+          <div class="project-placeholder">Capture d'écran<br>Rooride<br><span style="font-size:11px;color:var(--gray-400);margin-top:8px;display:block;">Remplacer par screenshot</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span class="project-tag tag-seo">SEO</span>
+          </div>
+          <div class="project-name">Rooride</div>
+          <div class="project-desc">Application mobile co-fondée en Australie. Stratégie SEO organique ayant généré une visibilité massive sur les moteurs de recherche.</div>
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">100K+</span>
+              <span class="stat-label">Impressions/mois</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">330K</span>
+              <span class="stat-label">Impressions sur 3 mois</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="section-label">Process</div>
+    <h2 class="section-title">Comment ça fonctionne</h2>
+    <p class="section-subtitle">Un appel gratuit pour comprendre vos besoins, puis on choisit le bon chemin ensemble.</p>
+    <div class="process-steps" style="grid-template-columns:1fr;">
+
+      <div style="text-align:center;margin-bottom:32px;">
+        <div class="step-number" style="opacity:1;">01</div>
+        <div class="step-title" style="font-size:20px;margin-bottom:8px;">Appel découverte — gratuit, 45 min</div>
+        <div class="step-desc" style="max-width:500px;margin:0 auto;">On parle de votre projet, vos objectifs, votre situation actuelle. On identifie vos besoins et on définit ensemble la meilleure approche.</div>
+      </div>
+
+      <div style="text-align:center;margin-bottom:32px;">
+        <div class="step-number" style="opacity:0.3;">02</div>
+        <div class="step-title" style="font-size:20px;margin-bottom:16px;">On choisit le bon chemin</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;max-width:900px;margin:0 auto;">
+          <div style="border:1px solid var(--gray-200);border-radius:12px;padding:28px 20px;text-align:center;">
+            <div style="font-size:32px;margin-bottom:12px;">🏗️</div>
+            <div style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:600;margin-bottom:8px;">Build from scratch</div>
+            <div style="font-size:13px;color:var(--gray-500);line-height:1.5;">Votre site n'existe pas encore ? On part de zéro : design, développement WordPress, SEO et GEO intégrés.</div>
+          </div>
+          <div style="border:1px solid var(--gray-200);border-radius:12px;padding:28px 20px;text-align:center;">
+            <div style="font-size:32px;margin-bottom:12px;">🔍</div>
+            <div style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:600;margin-bottom:8px;">Audit SEO complet</div>
+            <div style="font-size:13px;color:var(--gray-500);line-height:1.5;">Besoin de clarté avant d'agir ? Un diagnostic 360° avec un plan d'action concret.</div>
+          </div>
+          <div style="border:1px solid var(--gray-200);border-radius:12px;padding:28px 20px;text-align:center;">
+            <div style="font-size:32px;margin-bottom:12px;">🔄</div>
+            <div style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:600;margin-bottom:8px;">Migration WordPress</div>
+            <div style="font-size:13px;color:var(--gray-500);line-height:1.5;">Vous êtes sur Wix, Squarespace ou autre ? On migre vers WordPress, avec ou sans refonte design.</div>
+          </div>
+          <div style="border:1px solid var(--gray-200);border-radius:12px;padding:28px 20px;text-align:center;">
+            <div style="font-size:32px;margin-bottom:12px;">📈</div>
+            <div style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:600;margin-bottom:8px;">Accompagnement SEO</div>
+            <div style="font-size:13px;color:var(--gray-500);line-height:1.5;">Votre site existe déjà ? On optimise mois après mois : contenus, positions Google, citations IA.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="step-number" style="opacity:0.3;">03</div>
+        <div class="step-title" style="font-size:20px;margin-bottom:8px;">On avance, vos clients vous trouvent</div>
+        <div class="step-desc" style="max-width:500px;margin:0 auto;">Je livre, j'optimise, je suis vos résultats. Votre site performe sur Google et dans les réponses IA.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATOR -->
+<section class="diff-section">
+  <div class="section-inner">
+    <div class="diff-grid">
+      <div class="diff-content">
+        <div class="section-label">Pourquoi Rankitect</div>
+        <h3>Une seule personne pour tout votre projet web</h3>
+        <p>Habituellement, vous engagez un designer, puis un développeur, puis un consultant SEO. Trois interlocuteurs, trois factures, des allers-retours sans fin. Avec Rankitect, votre site est pensé comme un tout — du design au ranking.</p>
+        <ul class="diff-list">
+          <li>Design, développement et SEO par la même personne</li>
+          <li>Sites WordPress full custom, pas de templates</li>
+          <li>SEO intégré dès la structure, pas ajouté après</li>
+          <li>Préparé pour l'IA : schema markup, GEO, llms.txt</li>
+          <li>Bilingue français / anglais</li>
+        </ul>
+      </div>
+      <div class="diff-visual">
+        <div class="compare-row">
+          <span class="compare-label">Design</span>
+          <div class="compare-bar"><div class="compare-fill" style="width:100%;"></div></div>
+        </div>
+        <div class="compare-row">
+          <span class="compare-label">Build</span>
+          <div class="compare-bar"><div class="compare-fill" style="width:100%;"></div></div>
+        </div>
+        <div class="compare-row">
+          <span class="compare-label">SEO</span>
+          <div class="compare-bar"><div class="compare-fill" style="width:100%;"></div></div>
+        </div>
+        <div class="compare-row">
+          <span class="compare-label">GEO / IA</span>
+          <div class="compare-bar"><div class="compare-fill" style="width:100%;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARATIF PRIX -->
+    <div style="margin-top:64px;">
+      <h3 style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:700;text-align:center;margin-bottom:8px;">Le vrai coût d'un site web sécurisé, rapide et optimisé</h3>
+      <p style="text-align:center;font-size:15px;color:var(--gray-500);margin-bottom:40px;max-width:620px;margin-left:auto;margin-right:auto;">Pour que l'algorithme Google vous mette en avant et que vos clients vous trouvent. Comparez le parcours classique avec 3 freelances et l'approche Rankitect tout-en-un.</p>
+
+      <div class="compare-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px;max-width:900px;margin:0 auto;">
+
+        <!-- COLONNE CLASSIQUE - HAUT -->
+        <div style="border:1px solid var(--gray-200);border-top-left-radius:16px;border-top-right-radius:16px;border-bottom:none;padding:32px 28px 0 28px;">
+          <div style="font-family:'Rubik',sans-serif;font-size:13px;font-weight:600;color:var(--gray-400);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Parcours classique</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
+              <span style="font-size:14px;color:var(--gray-600);">🎨 Designer web</span>
+              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">4 000 €</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
+              <span style="font-size:14px;color:var(--gray-600);">💻 Développeur WordPress</span>
+              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">6 000 €</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
+              <span style="font-size:14px;color:var(--gray-600);">📊 Audit SEO</span>
+              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">2 000 €</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
+              <span style="font-size:14px;color:var(--gray-600);">🗂️ Chef de projet</span>
+              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">2 000 €</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLONNE RANKITECT - HAUT -->
+        <div style="border:2px solid var(--coral);border-top-left-radius:16px;border-top-right-radius:16px;border-bottom:none;padding:32px 28px 0 28px;position:relative;background:linear-gradient(135deg, rgba(255,107,107,0.02), rgba(255,179,71,0.02));">
+          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gradient);color:white;padding:4px 16px;border-radius:100px;font-size:12px;font-weight:600;">Recommandé</div>
+          <div style="font-family:'Rubik',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Rankitect</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(255,107,107,0.05);border-radius:10px;border:1px solid rgba(255,107,107,0.1);">
+              <span style="font-size:14px;color:var(--gray-700);">🏗️ Build full custom</span>
+              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">3 500 – 7 500 €</span>
+            </div>
+            <div style="font-size:12px;color:var(--gray-500);padding:0 4px;line-height:1.5;">Design + développement WordPress + SEO intégré dans la structure + schema markup + GEO-ready. Tout inclus, un seul prix.</div>
+          </div>
+          <div style="border:1px dashed var(--gray-200);border-radius:10px;padding:14px 16px;">
+            <div style="font-size:13px;font-weight:500;color:var(--gray-700);margin-bottom:4px;">📈 Optionnel : accompagnement SEO mensuel</div>
+            <div style="font-size:12px;color:var(--gray-500);line-height:1.5;">Pour continuer à croître après le lancement : articles de blog, suivi des positions, optimisations continues.</div>
+            <div style="font-family:'Rubik',sans-serif;margin-top:8px;display:flex;align-items:center;gap:8px;">
+              <span style="font-size:12px;font-weight:500;color:var(--gray-400);text-decoration:line-through;">800 €/mois</span>
+              <span style="font-size:14px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">600 €/mois</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RÉCAP CLASSIQUE - bas de la carte -->
+        <div style="border:1px solid var(--gray-200);border-top:none;border-bottom-left-radius:16px;border-bottom-right-radius:16px;padding:24px 28px 32px 28px;">
+          <div style="border-top:1px solid var(--gray-200);padding-top:20px;">
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">💰 Budget</span>
+              <span style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:700;color:var(--black);">~14 000 €</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">⏱️ Coordination</span>
+              <span style="font-size:14px;color:var(--gray-400);">4 interlocuteurs</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">🔄 Allers-retours</span>
+              <span style="font-size:14px;color:var(--gray-400);">Entre chaque prestataire</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">⏳ Délais</span>
+              <span style="font-size:14px;color:var(--gray-400);">3 à 6 mois</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">🤖 GEO / IA</span>
+              <span style="font-size:14px;color:var(--gray-400);">Rarement inclus</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RÉCAP RANKITECT - bas de la carte -->
+        <div style="border:2px solid var(--coral);border-top:none;border-bottom-left-radius:16px;border-bottom-right-radius:16px;padding:24px 28px 32px 28px;background:linear-gradient(135deg, rgba(255,107,107,0.02), rgba(255,179,71,0.02));">
+          <div style="border-top:1px solid rgba(255,107,107,0.15);padding-top:20px;">
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">💰 Budget</span>
+              <span style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Un seul devis clair</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">⏱️ Coordination</span>
+              <span style="font-size:14px;font-weight:500;color:var(--black);">1 interlocuteur</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">🔄 Allers-retours</span>
+              <span style="font-size:14px;font-weight:500;color:var(--black);">Zéro friction</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">⏳ Délais</span>
+              <span style="font-size:14px;font-weight:500;color:var(--black);">Pas de rallongement</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+              <span style="font-size:14px;color:var(--gray-500);">🤖 GEO / IA</span>
+              <span style="font-size:14px;font-weight:500;color:var(--black);">Inclus dès le départ</span>
+            </div>
+          </div>
+          <a href="#estimateur" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center;padding:12px 20px;font-size:14px;">Faire mon estimation en 1 clic</a>
+          <div style="font-size:11px;color:var(--gray-400);margin-top:8px;text-align:center;">À confirmer lors de l'appel découverte</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Prêt à lancer votre projet ?</h2>
+    <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">Commençons par un appel gratuit de 45 minutes. On parle de votre projet, de vos objectifs, et on voit ensemble comment avancer.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/VOTRE_NUMERO" class="btn btn-whatsapp" target="_blank">
+        💬 WhatsApp
+      </a>
+      <a href="mailto:votre@email.com" class="btn btn-email">
+        ✉️ Email
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-text">© 2026 <span class="grad">Rankitect</span> — Design · Build · Rank</p>
+</footer>
+
+</body>
+</html>
