@@ -242,6 +242,53 @@
     gap: 24px;
   }
 
+  .service-card-wrapper {
+    border-radius: 16px;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .service-card-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(255,107,107,0.08);
+  }
+
+  .service-card-wrapper:hover .service-card {
+    border-color: var(--coral);
+  }
+
+  .service-card-wrapper .service-card {
+    overflow: hidden;
+  }
+
+  .service-card-wrapper .service-card:hover {
+    border-color: var(--gray-200);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .service-card-wrapper .service-card::before {
+    display: none;
+  }
+
+  .service-card-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 16px 16px 0 0;
+    z-index: 1;
+  }
+
+  .service-card-wrapper:hover::before {
+    opacity: 1;
+  }
+
   .service-card {
     border: 1px solid var(--gray-200);
     border-radius: 16px;
@@ -720,9 +767,8 @@
           <div class="service-icon" style="margin-bottom:0;flex-shrink:0;">📞</div>
           <div style="flex:1;">
             <div class="service-name" style="margin-bottom:4px;">Appel découverte</div>
-            <div class="service-desc" style="margin-bottom:0;">45 minutes pour comprendre votre projet, vos objectifs et vos besoins. On dégrossit ensemble, sans engagement.</div>
+            <div class="service-desc" style="margin-bottom:0;">45 minutes pour dégrossir ensemble, sans engagement.</div>
           </div>
-          <div class="service-price" style="margin-bottom:0;flex-shrink:0;">Gratuit</div>
           <a href="https://wa.me/VOTRE_NUMERO" class="btn btn-primary" style="flex-shrink:0;padding:12px 20px;font-size:14px;" target="_blank">💬 Réserver mon appel gratuit</a>
         </div>
       </div>
@@ -732,7 +778,7 @@
         <div class="service-card">
           <div class="service-icon">🔍</div>
           <div class="service-name">Audit SEO complet du site web</div>
-          <div class="service-desc">SEO, GEO, design, copywriting, stratégie business et offres. Un diagnostic 360° de votre présence en ligne avec plan d'action concret.</div>
+          <div class="service-desc">Votre site ne vous rapporte pas de clients ? On analyse tout : positionnement Google, mots-clés manqués, vitesse, Core Web Vitals, structure technique, contenu. Vous repartez avec un diagnostic clair et un plan d'action priorisé pour que votre site travaille enfin pour vous. Compatible WordPress, Wix, Squarespace, Shopify.</div>
           <div class="service-price">900 €</div>
         </div>
 
@@ -740,63 +786,65 @@
           <div style="position:absolute;top:18px;right:-30px;background:var(--gradient);color:white;font-size:10px;font-weight:700;padding:5px 36px;transform:rotate(45deg);letter-spacing:1px;text-transform:uppercase;text-align:center;line-height:1;">One shot</div>
           <div class="service-icon">🤖</div>
           <div class="service-name">Audit + déploiement GEO</div>
-          <div class="service-desc">Analyse de votre visibilité sur ChatGPT, Perplexity, Gemini. Diagnostic schema markup, llms.txt, et déploiement complet pour que les IA vous citent.</div>
+          <div class="service-desc">Google n'est plus le seul endroit où vos clients cherchent. ChatGPT, Perplexity, Gemini citent déjà des entreprises à votre place. On audite votre visibilité sur ces nouveaux canaux, puis on structure vos contenus pour que les IA vous recommandent. Schema markup, llms.txt, architecture optimisée pour l'IA. Vos concurrents n'y sont pas encore.</div>
           <div class="service-price">500 €</div>
         </div>
 
         <div class="service-card">
           <div class="service-icon">📈</div>
           <div class="service-name">Accompagnement SEO mensuel</div>
-          <div class="service-desc">Stratégie pour dépasser vos concurrents et devenir visible : analyse de mots-clés stratégiques, rédaction d'articles de blog, suivi des données pour se positionner sur ce que vos clients recherchent. Compatible WordPress, Wix, Squarespace, Shopify, Podia — on s'adapte à votre plateforme. Sans engagement.</div>
+          <div class="service-desc">Stratégie pour dépasser vos concurrents et devenir celui qu'on trouve en premier : mots-clés stratégiques, articles qui attirent vos clients idéaux, suivi des positions chaque mois. Chaque action est basée sur ce que vos clients tapent réellement sur Google. Compatible WordPress, Wix, Squarespace, Shopify, Podia.</div>
           <div class="service-price">800 €/mois</div>
         </div>
       </div>
 
-      <!-- ROW 3 : Migration + Build — 2 colonnes, encarts alignés -->
-      <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:0 24px;">
-
-        <!-- Migration - HAUT -->
-        <div class="service-card" style="border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0;">
+      <!-- ROW 3 : Migration + Build — 2 colonnes -->
+      <div class="services-row-3" style="position:relative;">
+        <div class="service-card" style="display:flex;flex-direction:column;">
           <div class="service-icon">🔄</div>
           <div class="service-name">Migration vers WordPress</div>
           <div class="service-desc">Migration Wix, Squarespace ou autre vers WordPress. Conservation du SEO, redirections, architecture optimisée. SEO de base inclus : votre site sera positionné sur les mots-clés les plus pertinents et les requêtes déjà recherchées par vos futurs clients.</div>
-          <div class="service-price">~2 000 € <span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;-webkit-text-fill-color:var(--gray-500);background:none;">sans refonte design</span></div>
-          <div class="service-price" style="margin-top:4px;">~3 500 € <span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;-webkit-text-fill-color:var(--gray-500);background:none;">avec refonte design</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0;">
+            <div class="service-price">2 000 € <span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;-webkit-text-fill-color:var(--gray-500);background:none;">sans refonte design</span></div>
+            <div class="service-price">3 500 € <span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;-webkit-text-fill-color:var(--gray-500);background:none;">avec refonte design</span></div>
+          </div>
         </div>
 
-        <!-- Build - HAUT -->
-        <div class="service-card" style="border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0;">
+        <div class="service-card" style="display:flex;flex-direction:column;">
           <div class="service-icon">🏗️</div>
           <div class="service-name">Build WordPress full custom</div>
           <div class="service-desc">Maquettes sur mesure, développement WordPress, SEO on-page, schema markup, architecture GEO-ready. SEO de base inclus : votre site sera optimisé dès le lancement pour ranker sur les requêtes stratégiques et convertir vos visiteurs en clients.</div>
           <div class="service-price">3 500 – 7 500 €</div>
           <a href="#estimateur" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center;padding:12px 20px;font-size:14px;">Obtenir mon estimation en 1 clic</a>
         </div>
+      </div>
 
-        <!-- Migration - BAS (encart aligné) -->
-        <div class="service-card" style="border-top:none;border-top-left-radius:0;border-top-right-radius:0;padding-top:0;">
-          <div style="border:1px dashed var(--gray-200);border-radius:10px;padding:12px 14px;">
-            <div style="font-size:12px;font-weight:500;color:var(--gray-700);margin-bottom:3px;">📈 Optionnel — Après la migration : accompagnement SEO mensuel à tarif préférentiel</div>
-            <div style="font-size:11px;color:var(--gray-500);line-height:1.4;">Continuez à croître après la migration : articles de blog, suivi des positions, optimisations continues.</div>
-            <div style="font-family:'Rubik',sans-serif;margin-top:6px;display:flex;align-items:center;gap:8px;">
-              <span style="font-size:12px;font-weight:500;color:var(--gray-400);text-decoration:line-through;">800 €/mois</span>
-              <span style="font-size:14px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">600 €/mois</span>
-            </div>
+      <!-- Ronds flèches positionnés entre les cartes et l'encart optionnel -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:-6px 0 -6px 0;position:relative;z-index:2;">
+        <div style="display:flex;justify-content:center;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FF6B6B,#FFB347);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(255,107,107,0.3);">
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 5 L7 10 L11 5" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
-
-        <!-- Build - BAS (encart aligné) -->
-        <div class="service-card" style="border-top:none;border-top-left-radius:0;border-top-right-radius:0;padding-top:0;">
-          <div style="border:1px dashed var(--gray-200);border-radius:10px;padding:12px 14px;">
-            <div style="font-size:12px;font-weight:500;color:var(--gray-700);margin-bottom:3px;">📈 Optionnel — Après le lancement : accompagnement SEO mensuel à tarif préférentiel</div>
-            <div style="font-size:11px;color:var(--gray-500);line-height:1.4;">Pour continuer à croître après le lancement : articles de blog, suivi des positions, optimisations continues.</div>
-            <div style="font-family:'Rubik',sans-serif;margin-top:6px;display:flex;align-items:center;gap:8px;">
-              <span style="font-size:12px;font-weight:500;color:var(--gray-400);text-decoration:line-through;">800 €/mois</span>
-              <span style="font-size:14px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">600 €/mois</span>
-            </div>
+        <div style="display:flex;justify-content:center;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FF6B6B,#FFB347);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(255,107,107,0.3);">
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 5 L7 10 L11 5" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
+      </div>
 
+      <!-- Carte optionnelle pleine largeur -->
+      <div style="border:1px dashed var(--gray-200);border-radius:12px;padding:20px 28px;display:flex;align-items:center;gap:24px;margin-top:0;">
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:600;font-family:'Rubik',sans-serif;color:var(--gray-700);margin-bottom:4px;">📈 Optionnel — Après votre projet : accompagnement SEO mensuel à tarif préférentiel</div>
+          <div style="font-size:13px;color:var(--gray-500);line-height:1.5;">Que ce soit après une migration ou un build, continuez à croître : articles de blog, suivi des positions, optimisations continues. Compatible toutes plateformes.</div>
+        </div>
+        <div style="flex-shrink:0;text-align:right;">
+          <div style="font-family:'Rubik',sans-serif;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:14px;font-weight:500;color:var(--gray-400);text-decoration:line-through;">800 €/mois</span>
+            <span style="font-size:20px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">600 €/mois</span>
+          </div>
+        </div>
       </div>
 
     </div>
