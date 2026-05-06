@@ -679,6 +679,12 @@
     .services-row-3 { grid-template-columns: 1fr; }
     .services-row-1 .service-card { flex-direction: column !important; align-items: flex-start !important; }
     .section-title { font-size: 28px; }
+    #orbital-container { max-width: 100% !important; height: 500px !important; }
+    #orb-detail { width: 240px !important; padding: 20px !important; }
+    #orb-detail #orb-detail-title { font-size: 16px !important; }
+    #orb-detail #orb-detail-text { font-size: 13px !important; }
+    .orb-circle { width: 44px !important; height: 44px !important; font-size: 18px !important; }
+    .orb-label { font-size: 10px !important; }
   }
 
   @media (max-width: 480px) {
@@ -989,150 +995,316 @@
   </div>
 </section>
 
-<!-- DIFFERENTIATOR -->
-<section class="diff-section">
+<!-- POURQUOI RANKITECT — ORBITAL -->
+<section id="why" style="padding:60px 0 40px;overflow:hidden;background:var(--gray-50);">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-label">Pourquoi Rankitect</div>
+    <h2 class="section-title">Une seule personne. Cinq expertises.</h2>
+    <p class="section-subtitle" style="max-width:700px;margin:0 auto 48px;">Habituellement, vous engagez un designer, puis un développeur, puis un consultant SEO. Trois interlocuteurs, trois factures, des allers-retours sans fin. Avec Rankitect, votre site est pensé comme un tout, du design au ranking. Cliquez sur un domaine pour découvrir ce que Rankitect apporte à votre projet.</p>
+
+    <div id="orbital-container" style="position:relative;width:100%;max-width:660px;height:660px;margin:0 auto;cursor:default;" onclick="orbitalBgClick(event)">
+
+      <!-- Centre — logo -->
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;">
+        <div style="width:80px;height:80px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(255,107,107,0.2);">
+          <div style="width:40px;height:40px;border-radius:50%;background:white;opacity:0.85;"></div>
+        </div>
+        <div style="position:absolute;width:96px;height:96px;top:-8px;left:-8px;border-radius:50%;border:1px solid rgba(255,107,107,0.15);animation:orb-ping 2s ease-out infinite;"></div>
+        <div style="position:absolute;width:112px;height:112px;top:-16px;left:-16px;border-radius:50%;border:1px solid rgba(255,107,107,0.08);animation:orb-ping 2s ease-out infinite 0.5s;"></div>
+      </div>
+
+      <!-- Orbit ring -->
+      <div style="position:absolute;top:50%;left:50%;width:480px;height:480px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid var(--gray-200);"></div>
+
+      <!-- Nodes -->
+      <div id="orbital-nodes" style="position:absolute;top:50%;left:50%;width:0;height:0;">
+        <div class="orb-node" data-id="0" onclick="event.stopPropagation();toggleOrb(0)">
+          <div class="orb-circle">🔍</div>
+          <div class="orb-label">Audit</div>
+        </div>
+        <div class="orb-node" data-id="1" onclick="event.stopPropagation();toggleOrb(1)">
+          <div class="orb-circle">🎨</div>
+          <div class="orb-label">Design</div>
+        </div>
+        <div class="orb-node" data-id="2" onclick="event.stopPropagation();toggleOrb(2)">
+          <div class="orb-circle">💻</div>
+          <div class="orb-label">Développement</div>
+        </div>
+        <div class="orb-node" data-id="3" onclick="event.stopPropagation();toggleOrb(3)">
+          <div class="orb-circle">📈</div>
+          <div class="orb-label">SEO</div>
+        </div>
+        <div class="orb-node" data-id="4" onclick="event.stopPropagation();toggleOrb(4)">
+          <div class="orb-circle">🤖</div>
+          <div class="orb-label">GEO / IA</div>
+        </div>
+      </div>
+
+      <!-- Detail card -->
+      <div id="orb-detail" style="display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20;width:280px;background:white;border:1px solid var(--gray-200);border-radius:16px;padding:24px;box-shadow:0 16px 48px rgba(0,0,0,0.08);text-align:left;">
+        <div id="orb-detail-title" style="font-family:'Rubik',sans-serif;font-size:18px;font-weight:700;margin-bottom:12px;color:var(--black);"></div>
+        <div id="orb-detail-text" style="font-size:14px;color:var(--gray-500);line-height:1.6;text-align:justify;"></div>
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--gray-200);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-size:12px;color:var(--gray-400);font-weight:500;">Expertise</span>
+            <span style="font-size:12px;font-family:'Rubik',sans-serif;font-weight:600;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">100%</span>
+          </div>
+          <div style="width:100%;height:6px;background:var(--gray-100);border-radius:3px;overflow:hidden;">
+            <div style="width:100%;height:100%;background:var(--gradient);border-radius:3px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes orb-ping {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+  .orb-node {
+    position: absolute;
+    cursor: pointer;
+    text-align: center;
+    width: 80px;
+    margin-left: -40px;
+    margin-top: -30px;
+  }
+  .orb-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    margin: 0 auto;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .orb-node:hover .orb-circle {
+    border-color: var(--coral);
+    transform: scale(1.15);
+    box-shadow: 0 4px 20px rgba(255,107,107,0.15);
+  }
+  .orb-node.active .orb-circle {
+    background: var(--gradient);
+    border-color: transparent;
+    transform: scale(1.3);
+    box-shadow: 0 4px 24px rgba(255,107,107,0.3);
+  }
+  .orb-label {
+    margin-top: 8px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-500);
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+  .orb-node.active .orb-label {
+    color: var(--coral);
+  }
+  .orb-node.related .orb-circle {
+    border-color: var(--coral);
+    animation: orb-pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes orb-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,107,0.2); }
+    50% { box-shadow: 0 0 0 8px rgba(255,107,107,0); }
+  }
+</style>
+
+<script>
+(function() {
+  var orbData = [
+    { icon: '🔍', title: 'Audit', text: 'Vous investissez dans un site mais il ne génère ni appels, ni demandes, ni ventes. On identifie pourquoi : mots-clés sur lesquels vous êtes invisible, pages que Google ignore, vitesse qui fait fuir vos visiteurs. Vous repartez en sachant exactement quoi corriger pour que votre site commence à travailler pour vous.', related: [3, 4] },
+    { icon: '🎨', title: 'Design', text: 'Vos visiteurs arrivent sur votre site et repartent en quelques secondes. Le design ne les guide pas, la navigation est confuse, rien ne les pousse à vous contacter. On structure chaque page pour que le parcours soit clair, que votre offre soit comprise immédiatement, et que le visiteur passe à l\'action.', related: [2] },
+    { icon: '💻', title: 'Développement', text: 'Vous êtes bloqué sur Wix ou Squarespace, vous ne possédez pas votre site, les tarifs augmentent et vous n\'avez pas accès au code. On construit votre site sur WordPress : il vous appartient, il est rapide, sécurisé, et personne ne peut vous le retirer ou vous facturer pour y accéder.', related: [1, 3] },
+    { icon: '📈', title: 'SEO', text: 'Vos concurrents apparaissent avant vous sur Google et récupèrent les clients qui devraient être les vôtres. On positionne votre site sur les requêtes que vos futurs clients tapent réellement, avec une structure que Google comprend et met en avant. Le SEO est intégré dès la construction, pas bricolé après.', related: [0, 4] },
+    { icon: '🤖', title: 'GEO / IA', text: 'Quand vos clients demandent une recommandation à ChatGPT, Perplexity ou Gemini, c\'est une autre entreprise qui est citée. On structure vos contenus pour que les moteurs de recherche IA vous recommandent. Le GEO, c\'est le SEO de demain, et la majorité de vos concurrents n\'y sont pas encore.', related: [0, 3] }
+  ];
+
+  var angle = 0;
+  var autoRotate = true;
+  var activeId = null;
+  var nodes = document.querySelectorAll('.orb-node');
+  var detail = document.getElementById('orb-detail');
+  var nodesContainer = document.getElementById('orbital-nodes');
+  var RADIUS = window.innerWidth <= 768 ? 170 : 240;
+  var TOTAL = orbData.length;
+
+  function render() {
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var id = parseInt(node.dataset.id);
+      var a = ((i / TOTAL) * 360 + angle) * Math.PI / 180;
+      var x = RADIUS * Math.cos(a);
+      var y = RADIUS * Math.sin(a);
+      var zIndex = Math.round(100 + 50 * Math.cos(a));
+      var opacity = Math.max(0.4, Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(a)) / 2)));
+
+      node.style.left = x + 'px';
+      node.style.top = y + 'px';
+      node.style.zIndex = (id === activeId) ? 200 : zIndex;
+      node.style.opacity = activeId !== null ? ((id === activeId || orbData[activeId].related.indexOf(id) !== -1) ? 1 : 0.3) : opacity;
+    }
+  }
+
+  function loop() {
+    if (autoRotate) {
+      angle = (angle + 0.15) % 360;
+    }
+    render();
+    requestAnimationFrame(loop);
+  }
+
+  window.toggleOrb = function(id) {
+    if (activeId === id) {
+      activeId = null;
+      autoRotate = true;
+      detail.style.display = 'none';
+      nodes.forEach(function(n) { n.classList.remove('active', 'related'); });
+      return;
+    }
+    activeId = id;
+    autoRotate = false;
+    var targetAngle = (id / TOTAL) * 360;
+    angle = 270 - targetAngle;
+
+    nodes.forEach(function(n, i) {
+      n.classList.remove('active', 'related');
+      if (i === id) n.classList.add('active');
+      if (orbData[id].related.indexOf(i) !== -1) n.classList.add('related');
+    });
+
+    document.getElementById('orb-detail-title').textContent = orbData[id].title;
+    document.getElementById('orb-detail-text').textContent = orbData[id].text;
+    detail.style.display = 'block';
+  };
+
+  window.orbitalBgClick = function(e) {
+    if (e.target.closest('.orb-node') || e.target.closest('#orb-detail')) return;
+    activeId = null;
+    autoRotate = true;
+    detail.style.display = 'none';
+    nodes.forEach(function(n) { n.classList.remove('active', 'related'); });
+  };
+
+  loop();
+})();
+</script>
+
+<!-- POURQUOI CETTE OFFRE EST IMBATTABLE — COMPARATIF PRIX -->
+<section>
   <div class="section-inner">
-    <div class="diff-grid">
-      <div class="diff-content">
-        <div class="section-label">Pourquoi Rankitect</div>
-        <h3>Une seule personne pour tout votre projet web</h3>
-        <p>Habituellement, vous engagez un designer, puis un développeur, puis un consultant SEO. Trois interlocuteurs, trois factures, des allers-retours sans fin. Avec Rankitect, votre site est pensé comme un tout — du design au ranking.</p>
-        <ul class="diff-list">
-          <li>Design, développement et SEO par la même personne</li>
-          <li>Sites WordPress full custom, pas de templates</li>
-          <li>SEO intégré dès la structure, pas ajouté après</li>
-          <li>Préparé pour l'IA : schema markup, GEO, llms.txt</li>
-          <li>Bilingue français / anglais</li>
-        </ul>
-      </div>
-      <div class="diff-visual">
-        <div class="compare-row">
-          <span class="compare-label">Design</span>
-          <div class="compare-bar"><div class="compare-fill" style="width:100%;"></div></div>
-        </div>
-        <div class="compare-row">
-          <span class="compare-label">Build</span>
-          <div class="compare-bar"><div class="compare-fill" style="width:100%;"></div></div>
-        </div>
-        <div class="compare-row">
-          <span class="compare-label">SEO</span>
-          <div class="compare-bar"><div class="compare-fill" style="width:100%;"></div></div>
-        </div>
-        <div class="compare-row">
-          <span class="compare-label">GEO / IA</span>
-          <div class="compare-bar"><div class="compare-fill" style="width:100%;"></div></div>
+    <div class="section-label">Pourquoi cette offre est imbattable</div>
+    <h2 class="section-title">Le vrai coût d'un site web sécurisé, rapide et optimisé</h2>
+    <p class="section-subtitle" style="max-width:620px;margin:0 auto 40px;">Pour que l'algorithme Google vous mette en avant et que vos clients vous trouvent. Comparez le parcours classique avec 3 freelances et l'approche Rankitect tout-en-un.</p>
+
+    <div class="compare-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px;max-width:900px;margin:0 auto;">
+
+      <!-- COLONNE CLASSIQUE - HAUT -->
+      <div style="border:1px solid var(--gray-200);border-top-left-radius:16px;border-top-right-radius:16px;border-bottom:none;padding:32px 28px 0 28px;">
+        <div style="font-family:'Rubik',sans-serif;font-size:13px;font-weight:600;color:var(--gray-400);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Parcours classique</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
+            <span style="font-size:14px;color:var(--gray-600);">🎨 Designer web</span>
+            <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">4 000 €</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
+            <span style="font-size:14px;color:var(--gray-600);">💻 Développeur WordPress</span>
+            <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">6 000 €</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
+            <span style="font-size:14px;color:var(--gray-600);">📊 Audit SEO</span>
+            <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">2 000 €</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
+            <span style="font-size:14px;color:var(--gray-600);">🗂️ Chef de projet</span>
+            <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">2 000 €</span>
+          </div>
         </div>
       </div>
+
+      <!-- COLONNE RANKITECT - HAUT -->
+      <div style="border:2px solid var(--coral);border-top-left-radius:16px;border-top-right-radius:16px;border-bottom:none;padding:32px 28px 0 28px;position:relative;background:linear-gradient(135deg, rgba(255,107,107,0.02), rgba(255,179,71,0.02));">
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gradient);color:white;padding:4px 16px;border-radius:100px;font-size:12px;font-weight:600;">Recommandé</div>
+        <div style="font-family:'Rubik',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Rankitect</div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(255,107,107,0.05);border-radius:10px;border:1px solid rgba(255,107,107,0.1);">
+            <span style="font-size:14px;color:var(--gray-700);">🏗️ Build full custom</span>
+            <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">3 500 – 7 500 €</span>
+          </div>
+          <div style="font-size:12px;color:var(--gray-500);padding:0 4px;line-height:1.5;">Design + développement WordPress + SEO intégré dans la structure + schema markup + GEO-ready. Tout inclus, un seul prix.</div>
+        </div>
+        <div style="border:1px dashed var(--gray-200);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:13px;font-weight:500;color:var(--gray-700);margin-bottom:4px;">📈 Optionnel : accompagnement SEO mensuel</div>
+          <div style="font-size:12px;color:var(--gray-500);line-height:1.5;">Pour continuer à croître après le lancement : articles de blog, suivi des positions, optimisations continues.</div>
+          <div style="font-family:'Rubik',sans-serif;margin-top:8px;display:flex;align-items:center;gap:8px;">
+            <span style="font-size:12px;font-weight:500;color:var(--gray-400);text-decoration:line-through;">800 €/mois</span>
+            <span style="font-size:14px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">600 €/mois</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RÉCAP CLASSIQUE -->
+      <div style="border:1px solid var(--gray-200);border-top:none;border-bottom-left-radius:16px;border-bottom-right-radius:16px;padding:24px 28px 32px 28px;">
+        <div style="border-top:1px solid var(--gray-200);padding-top:20px;">
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">💰 Budget</span>
+            <span style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:700;color:var(--black);">~14 000 €</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">⏱️ Coordination</span>
+            <span style="font-size:14px;color:var(--gray-400);">4 interlocuteurs</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">🔄 Allers-retours</span>
+            <span style="font-size:14px;color:var(--gray-400);">Entre chaque prestataire</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">⏳ Délais</span>
+            <span style="font-size:14px;color:var(--gray-400);">3 à 6 mois</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">🤖 GEO / IA</span>
+            <span style="font-size:14px;color:var(--gray-400);">Rarement inclus</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RÉCAP RANKITECT -->
+      <div style="border:2px solid var(--coral);border-top:none;border-bottom-left-radius:16px;border-bottom-right-radius:16px;padding:24px 28px 32px 28px;background:linear-gradient(135deg, rgba(255,107,107,0.02), rgba(255,179,71,0.02));">
+        <div style="border-top:1px solid rgba(255,107,107,0.15);padding-top:20px;">
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">💰 Budget</span>
+            <span style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Un seul devis clair</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">⏱️ Coordination</span>
+            <span style="font-size:14px;font-weight:500;color:var(--black);">1 interlocuteur</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">🔄 Allers-retours</span>
+            <span style="font-size:14px;font-weight:500;color:var(--black);">Zéro friction</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">⏳ Délais</span>
+            <span style="font-size:14px;font-weight:500;color:var(--black);">Pas de rallongement</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
+            <span style="font-size:14px;color:var(--gray-500);">🤖 GEO / IA</span>
+            <span style="font-size:14px;font-weight:500;color:var(--black);">Inclus dès le départ</span>
+          </div>
+        </div>
+        <a href="#estimateur" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center;padding:12px 20px;font-size:14px;">Faire mon estimation en 1 clic</a>
+      </div>
+
     </div>
-
-    <!-- COMPARATIF PRIX -->
-    <div style="margin-top:64px;">
-      <h3 style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:700;text-align:center;margin-bottom:8px;">Le vrai coût d'un site web sécurisé, rapide et optimisé</h3>
-      <p style="text-align:center;font-size:15px;color:var(--gray-500);margin-bottom:40px;max-width:620px;margin-left:auto;margin-right:auto;">Pour que l'algorithme Google vous mette en avant et que vos clients vous trouvent. Comparez le parcours classique avec 3 freelances et l'approche Rankitect tout-en-un.</p>
-
-      <div class="compare-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px;max-width:900px;margin:0 auto;">
-
-        <!-- COLONNE CLASSIQUE - HAUT -->
-        <div style="border:1px solid var(--gray-200);border-top-left-radius:16px;border-top-right-radius:16px;border-bottom:none;padding:32px 28px 0 28px;">
-          <div style="font-family:'Rubik',sans-serif;font-size:13px;font-weight:600;color:var(--gray-400);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Parcours classique</div>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
-              <span style="font-size:14px;color:var(--gray-600);">🎨 Designer web</span>
-              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">4 000 €</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
-              <span style="font-size:14px;color:var(--gray-600);">💻 Développeur WordPress</span>
-              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">6 000 €</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
-              <span style="font-size:14px;color:var(--gray-600);">📊 Audit SEO</span>
-              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">2 000 €</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gray-100);border-radius:10px;">
-              <span style="font-size:14px;color:var(--gray-600);">🗂️ Chef de projet</span>
-              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;color:var(--black);">2 000 €</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- COLONNE RANKITECT - HAUT -->
-        <div style="border:2px solid var(--coral);border-top-left-radius:16px;border-top-right-radius:16px;border-bottom:none;padding:32px 28px 0 28px;position:relative;background:linear-gradient(135deg, rgba(255,107,107,0.02), rgba(255,179,71,0.02));">
-          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gradient);color:white;padding:4px 16px;border-radius:100px;font-size:12px;font-weight:600;">Recommandé</div>
-          <div style="font-family:'Rubik',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Rankitect</div>
-          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(255,107,107,0.05);border-radius:10px;border:1px solid rgba(255,107,107,0.1);">
-              <span style="font-size:14px;color:var(--gray-700);">🏗️ Build full custom</span>
-              <span style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">3 500 – 7 500 €</span>
-            </div>
-            <div style="font-size:12px;color:var(--gray-500);padding:0 4px;line-height:1.5;">Design + développement WordPress + SEO intégré dans la structure + schema markup + GEO-ready. Tout inclus, un seul prix.</div>
-          </div>
-          <div style="border:1px dashed var(--gray-200);border-radius:10px;padding:14px 16px;">
-            <div style="font-size:13px;font-weight:500;color:var(--gray-700);margin-bottom:4px;">📈 Optionnel : accompagnement SEO mensuel</div>
-            <div style="font-size:12px;color:var(--gray-500);line-height:1.5;">Pour continuer à croître après le lancement : articles de blog, suivi des positions, optimisations continues.</div>
-            <div style="font-family:'Rubik',sans-serif;margin-top:8px;display:flex;align-items:center;gap:8px;">
-              <span style="font-size:12px;font-weight:500;color:var(--gray-400);text-decoration:line-through;">800 €/mois</span>
-              <span style="font-size:14px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">600 €/mois</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- RÉCAP CLASSIQUE - bas de la carte -->
-        <div style="border:1px solid var(--gray-200);border-top:none;border-bottom-left-radius:16px;border-bottom-right-radius:16px;padding:24px 28px 32px 28px;">
-          <div style="border-top:1px solid var(--gray-200);padding-top:20px;">
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">💰 Budget</span>
-              <span style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:700;color:var(--black);">~14 000 €</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">⏱️ Coordination</span>
-              <span style="font-size:14px;color:var(--gray-400);">4 interlocuteurs</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">🔄 Allers-retours</span>
-              <span style="font-size:14px;color:var(--gray-400);">Entre chaque prestataire</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">⏳ Délais</span>
-              <span style="font-size:14px;color:var(--gray-400);">3 à 6 mois</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">🤖 GEO / IA</span>
-              <span style="font-size:14px;color:var(--gray-400);">Rarement inclus</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- RÉCAP RANKITECT - bas de la carte -->
-        <div style="border:2px solid var(--coral);border-top:none;border-bottom-left-radius:16px;border-bottom-right-radius:16px;padding:24px 28px 32px 28px;background:linear-gradient(135deg, rgba(255,107,107,0.02), rgba(255,179,71,0.02));">
-          <div style="border-top:1px solid rgba(255,107,107,0.15);padding-top:20px;">
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">💰 Budget</span>
-              <span style="font-family:'Rubik',sans-serif;font-size:15px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Un seul devis clair</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">⏱️ Coordination</span>
-              <span style="font-size:14px;font-weight:500;color:var(--black);">1 interlocuteur</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">🔄 Allers-retours</span>
-              <span style="font-size:14px;font-weight:500;color:var(--black);">Zéro friction</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">⏳ Délais</span>
-              <span style="font-size:14px;font-weight:500;color:var(--black);">Pas de rallongement</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;height:36px;align-items:center;">
-              <span style="font-size:14px;color:var(--gray-500);">🤖 GEO / IA</span>
-              <span style="font-size:14px;font-weight:500;color:var(--black);">Inclus dès le départ</span>
-            </div>
-          </div>
-          <a href="#estimateur" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center;padding:12px 20px;font-size:14px;">Faire mon estimation en 1 clic</a>
-          <div style="font-size:11px;color:var(--gray-400);margin-top:8px;text-align:center;">À confirmer lors de l'appel découverte</div>
-        </div>
-
-      </div>
-    </div>
-
   </div>
 </section>
 
