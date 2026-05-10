@@ -844,19 +844,15 @@
 </div>
 
 <!-- POURQUOI RANKITECT — ACCORDÉON -->
-<section id="why" style="padding:80px 24px 60px;background:var(--gray-50);overflow:hidden;">
+<section id="why" style="padding:100px 24px 80px;background:linear-gradient(180deg, #ffffff 0%, var(--gray-50) 15%, var(--gray-50) 85%, #ffffff 100%);overflow:hidden;">
   <div class="section-inner">
     <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center;">
 
       <!-- Texte à gauche -->
       <div class="why-text">
-        <div class="section-label" style="text-align:left;">Pourquoi Rankitect</div>
+        <div class="section-label" style="text-align:left;">Pourquoi Rankitect ?</div>
         <h2 class="section-title" style="text-align:left;font-size:42px;line-height:1.15;">Une seule personne.<br><span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Cinq expertises.</span></h2>
         <p style="font-size:16px;color:var(--gray-600);line-height:1.7;margin-top:24px;text-align:justify;">Habituellement, vous engagez un designer, puis un développeur, puis un consultant SEO. Trois interlocuteurs, trois factures, des allers-retours sans fin. Avec Rankitect, votre site est pensé comme un tout, du design au ranking.</p>
-        <p style="font-size:13px;color:var(--coral);font-weight:600;margin-top:24px;display:inline-flex;align-items:center;gap:8px;">
-          <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--coral);animation:why-dot-pulse 1.5s ease-in-out infinite;"></span>
-          Survolez une expertise pour la découvrir
-        </p>
       </div>
 
       <!-- Accordéon à droite -->
@@ -866,6 +862,9 @@
           <div class="accordion-item active" data-index="0">
             <img src="images/audit-seo-site-web-pme.jpg" alt="Audit SEO complet d'un site web PME : analyse Google Search Console, mots-clés, backlinks et performances" class="accordion-img" data-replace="audit" loading="lazy">
             <div class="accordion-overlay"></div>
+            <div class="accordion-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
             <div class="accordion-content">
               <div class="accordion-icon">🔍</div>
               <div class="accordion-title">Audit de site web</div>
@@ -877,6 +876,9 @@
           <div class="accordion-item" data-index="1">
             <img src="images/design-site-web-sur-mesure-conversion.jpg" alt="Design de site web sur mesure : maquettes UX UI et branding kit pour site qui convertit" class="accordion-img" data-replace="design" loading="lazy" style="object-position: left center;">
             <div class="accordion-overlay"></div>
+            <div class="accordion-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
             <div class="accordion-content">
               <div class="accordion-icon">🎨</div>
               <div class="accordion-title">Design et refonte</div>
@@ -888,6 +890,9 @@
           <div class="accordion-item" data-index="2">
             <img src="images/creation-site-wordpress-sur-mesure-pme.jpg" alt="Création de site WordPress sur mesure pour PME : développement custom, code propre, full custom" class="accordion-img" data-replace="dev" loading="lazy">
             <div class="accordion-overlay"></div>
+            <div class="accordion-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
             <div class="accordion-content">
               <div class="accordion-icon">💻</div>
               <div class="accordion-title">Web développement</div>
@@ -899,6 +904,9 @@
           <div class="accordion-item" data-index="3">
             <img src="images/referencement-naturel-google-pme.jpg" alt="Référencement naturel Google pour PME : suivi des positions, clics, impressions sur Search Console" class="accordion-img" data-replace="seo" loading="lazy" style="object-position: left center;">
             <div class="accordion-overlay"></div>
+            <div class="accordion-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
             <div class="accordion-content">
               <div class="accordion-icon">📈</div>
               <div class="accordion-title">SEO / Référencement</div>
@@ -910,6 +918,9 @@
           <div class="accordion-item" data-index="4">
             <img src="images/referencement-geo-aeo-chatgpt-perplexity.jpeg" alt="Référencement GEO et AEO : visibilité sur ChatGPT, Perplexity, Claude et moteurs de recherche IA" class="accordion-img" data-replace="geo" loading="lazy">
             <div class="accordion-overlay"></div>
+            <div class="accordion-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
             <div class="accordion-content">
               <div class="accordion-icon">🤖</div>
               <div class="accordion-title">GEO / IA</div>
@@ -926,11 +937,6 @@
 </section>
 
 <style>
-  @keyframes why-dot-pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.6; }
-  }
-
   .accordion-container {
     display: flex;
     flex-direction: row;
@@ -965,7 +971,29 @@
   .accordion-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.95) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 25%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.95) 100%);
+  }
+
+  .accordion-arrow {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 107, 107, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .accordion-item.active .accordion-arrow {
+    opacity: 0;
+    transform: scale(0.7) rotate(45deg);
   }
 
   .accordion-content {
@@ -1007,18 +1035,20 @@
 
   .accordion-label-vertical {
     position: absolute;
-    bottom: 24px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) rotate(-90deg);
+    transform: translate(-50%, -50%) rotate(-90deg);
     transform-origin: center;
     color: white;
     font-family: 'Rubik', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     white-space: nowrap;
     letter-spacing: 0.5px;
     transition: opacity 0.3s ease;
     pointer-events: none;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    z-index: 2;
   }
 
   .accordion-item.active .accordion-label-vertical {
@@ -1040,18 +1070,51 @@
     #why .why-text p {
       text-align: center !important;
     }
+
+    /* Accordéon en mode VERTICAL sur mobile (panneaux empilés horizontalement) */
     .accordion-container {
-      height: 420px;
-      gap: 8px;
+      flex-direction: column;
+      height: auto;
+      gap: 10px;
     }
     .accordion-item {
-      flex: 0 0 50px;
+      flex: 0 0 70px;
+      width: 100%;
+      height: 70px;
     }
     .accordion-item.active {
-      flex: 1 1 280px;
+      flex: 0 0 320px;
+      height: 320px;
     }
     .accordion-title { font-size: 18px; }
-    .accordion-desc { font-size: 12px; }
+    .accordion-desc { font-size: 13px; }
+
+    /* Sur mobile : label horizontal en haut au lieu de vertical au milieu */
+    .accordion-label-vertical {
+      top: 50%;
+      left: 24px;
+      transform: translateY(-50%) rotate(0deg);
+      font-size: 15px;
+    }
+
+    /* Flèche plus visible sur mobile */
+    .accordion-arrow {
+      top: 50%;
+      right: 18px;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+    }
+    .accordion-item.active .accordion-arrow {
+      top: 14px;
+      right: 14px;
+      transform: scale(0.7) rotate(45deg);
+    }
+
+    /* Le content reste en bas */
+    .accordion-content {
+      padding: 20px;
+    }
   }
 </style>
 
