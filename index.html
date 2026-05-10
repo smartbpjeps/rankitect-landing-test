@@ -139,6 +139,16 @@
     100% { background-position: 40px 40px; }
   }
 
+  /* Sur tablette et mobile : le spotlight au survol n'a pas de sens (pas de souris) */
+  @media (max-width: 1024px) {
+    .hero-grid-spotlight {
+      display: none;
+    }
+    .hero-grid-base {
+      opacity: 0.12;
+    }
+  }
+
   .hero-blobs {
     position: absolute;
     inset: 0;
@@ -183,10 +193,16 @@
   .hero {
     position: relative;
     z-index: 2;
-    padding: 200px 24px 100px;
+    padding: 140px 24px 100px;
     text-align: center;
     max-width: 900px;
     margin: 0 auto;
+  }
+
+  .hero-logo {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: center;
   }
 
   .hero h1 {
@@ -754,8 +770,15 @@
   /* RESPONSIVE */
   @media (max-width: 768px) {
     .nav-links { display: none; }
-    .hero h1 { font-size: 32px; }
-    .hero p { font-size: 16px; }
+    .hero { padding: 110px 20px 80px; max-width: 100%; }
+    .hero-logo { margin-bottom: 24px; }
+    .hero-logo svg { width: 56px; height: 56px; }
+    .hero h1 { font-size: 30px; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .hero p { font-size: 15px; line-height: 1.6; max-width: 100%; padding: 0 4px; margin-bottom: 28px; }
+    .hero-tags { gap: 8px; margin-bottom: 32px; }
+    .hero-tag { font-size: 12px; padding: 6px 12px; }
+    .hero-ctas { gap: 10px; flex-direction: column; align-items: stretch; }
+    .hero-ctas .btn { padding: 12px 20px; font-size: 14px; justify-content: center; }
     .project-card { grid-template-columns: 1fr; }
     .process-steps { grid-template-columns: repeat(2, 1fr); }
     .diff-grid { grid-template-columns: 1fr; }
@@ -773,7 +796,11 @@
   }
 
   @media (max-width: 480px) {
-    .hero { padding: 120px 16px 60px; }
+    .hero { padding: 100px 16px 60px; }
+    .hero-logo { margin-bottom: 20px; }
+    .hero-logo svg { width: 48px; height: 48px; }
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 14px; }
     section { padding: 60px 16px; }
     .process-steps { grid-template-columns: 1fr; }
     .project-stats { flex-wrap: wrap; }
@@ -828,6 +855,16 @@
 <div class="hero-grid-base"></div>
 <div class="hero-grid-spotlight"></div>
 <section class="hero">
+  <div class="hero-logo fade-in">
+    <svg width="72" height="72" viewBox="0 0 130 130">
+      <defs><linearGradient id="hero-logo-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF6B6B"/><stop offset="100%" stop-color="#FFB347"/></linearGradient></defs>
+      <circle cx="65" cy="65" r="62" fill="url(#hero-logo-grad)"/>
+      <path d="M40 54 L28 69 L40 84" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.65"/>
+      <path d="M90 54 L102 69 L90 84" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.65"/>
+      <path d="M65 86 L65 46" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M51 59 L65 42 L79 59" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+  </div>
   <h1 class="fade-in delay-1">Un design. Un site. Du trafic.<br><span class="grad">L'architecte de votre visibilité<br>en ligne.</span></h1>
   <p class="fade-in delay-2">Je design, je conçois, je construis et je référence votre site WordPress. Il convertit, fidélise, apparaît dans les résultats de recherche, et augmente vos revenus.</p>
   <div class="hero-tags fade-in delay-3">
@@ -867,7 +904,7 @@
             </div>
             <div class="accordion-content">
               <div class="accordion-title">Audit web</div>
-              <div class="accordion-desc">Vous investissez dans un site mais il ne génère ni appels, ni demandes, ni ventes. On analyse tout : design, positionnement Google, mots-clés manqués, vitesse, structure technique. Vous repartez avec un plan d'action priorisé.</div>
+              <div class="accordion-desc">Votre site ne génère ni appels, ni demandes, ni ventes. On analyse design, positionnement Google, mots-clés manqués, vitesse, structure technique. Vous repartez avec un plan d'action priorisé.</div>
             </div>
             <div class="accordion-label-vertical">Audit web</div>
           </div>
@@ -893,7 +930,7 @@
             </div>
             <div class="accordion-content">
               <div class="accordion-title">Web dev</div>
-              <div class="accordion-desc">Vous êtes bloqué sur Wix ou Squarespace. On construit votre site sur WordPress : il vous appartient, il est rapide, sécurisé, et personne ne peut vous le retirer ou vous facturer pour y accéder.</div>
+              <div class="accordion-desc">On construit votre site WordPress sur mesure, de zéro. Vous êtes sur Wix ou Squarespace ? On migre, sans perdre votre SEO. Votre site vous appartient, il est rapide, sécurisé, et personne ne peut vous le retirer.</div>
             </div>
             <div class="accordion-label-vertical">Web dev</div>
           </div>
@@ -970,7 +1007,7 @@
   .accordion-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.95) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 30%, rgba(0,0,0,0.78) 55%, rgba(0,0,0,0.97) 100%);
   }
 
   /* Flèche visible sur tablette et mobile (< 900px) */
