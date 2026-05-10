@@ -866,9 +866,8 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="accordion-content">
-              <div class="accordion-icon">🔍</div>
               <div class="accordion-title">Audit de site web</div>
-              <div class="accordion-desc">On analyse tout : design, positionnement Google, mots-clés manqués, vitesse, structure technique. Vous repartez avec un plan d'action priorisé.</div>
+              <div class="accordion-desc">Vous investissez dans un site mais il ne génère ni appels, ni demandes, ni ventes. On analyse tout : design, positionnement Google, mots-clés manqués, vitesse, structure technique. Vous repartez avec un plan d'action priorisé.</div>
             </div>
             <div class="accordion-label-vertical">Audit de site web</div>
           </div>
@@ -880,7 +879,6 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="accordion-content">
-              <div class="accordion-icon">🎨</div>
               <div class="accordion-title">Design et refonte</div>
               <div class="accordion-desc">Vos visiteurs arrivent et repartent en quelques secondes. On structure chaque page pour que le parcours soit clair, que votre offre soit comprise immédiatement, et que le visiteur passe à l'action.</div>
             </div>
@@ -894,7 +892,6 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="accordion-content">
-              <div class="accordion-icon">💻</div>
               <div class="accordion-title">Web développement</div>
               <div class="accordion-desc">Vous êtes bloqué sur Wix ou Squarespace. On construit votre site sur WordPress : il vous appartient, il est rapide, sécurisé, et personne ne peut vous le retirer ou vous facturer pour y accéder.</div>
             </div>
@@ -908,7 +905,6 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="accordion-content">
-              <div class="accordion-icon">📈</div>
               <div class="accordion-title">SEO / Référencement</div>
               <div class="accordion-desc">Vos concurrents apparaissent avant vous sur Google et récupèrent les clients qui devraient être les vôtres. On positionne votre site sur les requêtes que vos futurs clients tapent réellement.</div>
             </div>
@@ -922,7 +918,6 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="accordion-content">
-              <div class="accordion-icon">🤖</div>
               <div class="accordion-title">GEO / IA</div>
               <div class="accordion-desc">Quand vos clients demandent une recommandation à ChatGPT ou Perplexity, c'est une autre entreprise qui est citée. On structure vos contenus pour que les moteurs IA vous recommandent.</div>
             </div>
@@ -968,32 +963,14 @@
     object-fit: cover;
   }
 
+  .accordion-arrow {
+    display: none;
+  }
+
   .accordion-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 25%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.95) 100%);
-  }
-
-  .accordion-arrow {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(255, 107, 107, 0.85);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  }
-
-  .accordion-item.active .accordion-arrow {
-    opacity: 0;
-    transform: scale(0.7) rotate(45deg);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 25%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,1) 100%);
   }
 
   .accordion-content {
@@ -1035,9 +1012,9 @@
 
   .accordion-label-vertical {
     position: absolute;
-    top: 50%;
+    bottom: 24px;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-90deg);
+    transform: translateX(-50%) rotate(-90deg);
     transform-origin: center;
     color: white;
     font-family: 'Rubik', sans-serif;
@@ -1071,49 +1048,40 @@
       text-align: center !important;
     }
 
-    /* Accordéon en mode VERTICAL sur mobile (panneaux empilés horizontalement) */
+    /* Accordéon HORIZONTAL sur mobile (cartes côte à côte, comme sur desktop) */
     .accordion-container {
-      flex-direction: column;
-      height: auto;
-      gap: 10px;
+      height: 380px;
+      gap: 6px;
     }
     .accordion-item {
-      flex: 0 0 70px;
-      width: 100%;
-      height: 70px;
+      flex: 0 0 48px;
     }
     .accordion-item.active {
-      flex: 0 0 320px;
-      height: 320px;
+      flex: 1 1 240px;
     }
     .accordion-title { font-size: 18px; }
-    .accordion-desc { font-size: 13px; }
+    .accordion-desc { font-size: 12px; }
 
-    /* Sur mobile : label horizontal en haut au lieu de vertical au milieu */
-    .accordion-label-vertical {
-      top: 50%;
-      left: 24px;
-      transform: translateY(-50%) rotate(0deg);
-      font-size: 15px;
-    }
-
-    /* Flèche plus visible sur mobile */
+    /* Flèche visible UNIQUEMENT sur mobile */
     .accordion-arrow {
-      top: 50%;
-      right: 18px;
-      transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
-    }
-    .accordion-item.active .accordion-arrow {
-      top: 14px;
-      right: 14px;
-      transform: scale(0.7) rotate(45deg);
+      display: flex;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--coral);
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
     }
 
-    /* Le content reste en bas */
-    .accordion-content {
-      padding: 20px;
+    .accordion-item.active .accordion-arrow {
+      opacity: 0;
+      transform: scale(0.7) rotate(45deg);
     }
   }
 </style>
