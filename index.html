@@ -1037,12 +1037,15 @@
     color: white;
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
   }
 
   .accordion-item.active .accordion-content {
     opacity: 1;
     transform: translateY(0);
+    transition: opacity 0.3s ease 0.5s, transform 0.3s ease 0.5s;
+    pointer-events: auto;
   }
 
   .accordion-icon {
