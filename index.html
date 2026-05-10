@@ -866,7 +866,7 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="accordion-content">
-              <div class="accordion-title">Audit de site web</div>
+              <div class="accordion-title">Audit web</div>
               <div class="accordion-desc">Vous investissez dans un site mais il ne génère ni appels, ni demandes, ni ventes. On analyse tout : design, positionnement Google, mots-clés manqués, vitesse, structure technique. Vous repartez avec un plan d'action priorisé.</div>
             </div>
             <div class="accordion-label-vertical">Audit web</div>
@@ -879,7 +879,7 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="accordion-content">
-              <div class="accordion-title">Design et refonte</div>
+              <div class="accordion-title">Design & refonte</div>
               <div class="accordion-desc">Vos visiteurs arrivent et repartent en quelques secondes. On structure chaque page pour que le parcours soit clair, que votre offre soit comprise immédiatement, et que le visiteur passe à l'action.</div>
             </div>
             <div class="accordion-label-vertical">Design & refonte</div>
@@ -892,10 +892,10 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="accordion-content">
-              <div class="accordion-title">Web développement</div>
+              <div class="accordion-title">Web dev</div>
               <div class="accordion-desc">Vous êtes bloqué sur Wix ou Squarespace. On construit votre site sur WordPress : il vous appartient, il est rapide, sécurisé, et personne ne peut vous le retirer ou vous facturer pour y accéder.</div>
             </div>
-            <div class="accordion-label-vertical">Web</div>
+            <div class="accordion-label-vertical">Web dev</div>
           </div>
 
           <div class="accordion-item" data-index="3">
@@ -905,7 +905,7 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11 L11 3 M11 3 L5 3 M11 3 L11 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="accordion-content">
-              <div class="accordion-title">SEO / Référencement</div>
+              <div class="accordion-title">SEO & visibilité</div>
               <div class="accordion-desc">Vos concurrents apparaissent avant vous sur Google et récupèrent les clients qui devraient être les vôtres. On positionne votre site sur les requêtes que vos futurs clients tapent réellement.</div>
             </div>
             <div class="accordion-label-vertical">SEO & visibilité</div>
@@ -971,6 +971,32 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 25%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,1) 100%);
+  }
+
+  /* Flèche visible sur tablette et mobile (< 900px) */
+  @media (max-width: 900px) {
+    .accordion-arrow {
+      display: flex;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .accordion-item.active .accordion-arrow {
+      opacity: 0;
+      transform: scale(0.7);
+    }
   }
 
   .accordion-content {
@@ -1081,31 +1107,6 @@
       top: auto !important;
       transform: none !important;
       font-size: 16px !important;
-    }
-
-    /* Flèche visible UNIQUEMENT sur mobile, à droite centrée verticalement */
-    .accordion-arrow {
-      display: flex !important;
-      position: absolute !important;
-      top: 50% !important;
-      right: 18px !important;
-      transform: translateY(-50%) !important;
-      width: 32px !important;
-      height: 32px !important;
-      border-radius: 50% !important;
-      background: var(--coral) !important;
-      align-items: center !important;
-      justify-content: center !important;
-      z-index: 3 !important;
-      transition: opacity 0.3s ease, transform 0.3s ease !important;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.25) !important;
-    }
-
-    .accordion-item.active .accordion-arrow {
-      top: 16px !important;
-      right: 16px !important;
-      transform: scale(0.8) rotate(45deg) !important;
-      background: rgba(255,255,255,0.2) !important;
     }
 
     /* Image plus claire en haut quand fermée pour mieux voir le label */
