@@ -1684,14 +1684,14 @@
 </section>
 
 <!-- SERVICES -->
-<section id="services">
-  <div class="section-inner">
+<section id="services" style="padding:0;">
+  <div class="section-inner" style="padding-top:80px;padding-bottom:48px;">
     <div class="section-label">Services</div>
     <h2 class="section-title">Des offres claires, des résultats concrets</h2>
     <p class="section-subtitle" style="max-width:680px;margin:0 auto 48px;">Des offres conçues pour couvrir 100% des besoins de votre entreprise en ligne : design, création de site, visibilité Google, conversion et croissance organique.</p>
 
     <!-- BANDEAU APPEL DÉCOUVERTE -->
-    <div style="background:linear-gradient(135deg,rgba(255,107,107,0.06),rgba(255,179,71,0.06));border:1.5px solid rgba(255,107,107,0.2);border-radius:16px;padding:20px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:48px;">
+    <div style="background:linear-gradient(135deg,rgba(255,107,107,0.06),rgba(255,179,71,0.06));border:1.5px solid rgba(255,107,107,0.2);border-radius:16px;padding:20px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
       <div style="font-size:28px;flex-shrink:0;">📞</div>
       <div style="flex:1;min-width:180px;">
         <div style="font-family:'Rubik',sans-serif;font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Appel découverte</div>
@@ -1704,28 +1704,34 @@
     </div>
   </div>
 
-  <!-- FEATURE CAROUSEL -->
-  <div id="svc-carousel" style="position:relative;overflow:hidden;border-radius:32px;display:flex;min-height:560px;border:1px solid #e5e5e5;max-width:1100px;margin:0 auto;">
+  <!-- CAROUSEL OUTER: tall div to create scroll distance -->
+  <div id="svc-outer" style="position:relative;">
 
-    <!-- LEFT: Labels list -->
-    <div id="svc-left" style="width:40%;min-width:280px;background:linear-gradient(135deg,#FF6B6B,#FFB347);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0 16px;">
-      <div style="position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(to bottom,#FF6B6B,transparent);z-index:3;"></div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to top,#FFB347,transparent);z-index:3;"></div>
-      <div id="svc-labels" style="position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:flex-start;padding-left:24px;"></div>
-    </div>
+    <!-- STICKY FRAME: locks to viewport while scrolling through outer -->
+    <div id="svc-sticky" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;">
 
-    <!-- RIGHT: Card display -->
-    <div id="svc-right" style="flex:1;background:#fafafa;display:flex;align-items:center;justify-content:center;padding:40px 32px;position:relative;overflow:hidden;">
-      <div id="svc-card-area" style="position:relative;width:100%;max-width:420px;aspect-ratio:4/5;"></div>
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:0 24px;display:flex;border-radius:32px;overflow:hidden;border:1px solid #e5e5e5;min-height:min(560px,75vh);">
+
+        <!-- LEFT: labels -->
+        <div style="width:40%;min-width:260px;background:linear-gradient(135deg,#FF6B6B,#FFB347);position:relative;display:flex;align-items:center;overflow:hidden;padding:0 16px;">
+          <div style="position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(to bottom,#FF6B6B,transparent);z-index:3;"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to top,#FFB347,transparent);z-index:3;"></div>
+          <div id="svc-labels" style="position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:flex-start;padding-left:24px;"></div>
+        </div>
+
+        <!-- RIGHT: cards -->
+        <div style="flex:1;background:#fafafa;display:flex;align-items:center;justify-content:center;padding:40px 32px;position:relative;overflow:hidden;">
+          <div id="svc-cards" style="position:relative;width:100%;max-width:420px;aspect-ratio:4/5;"></div>
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:6px;" id="svc-dots"></div>
     </div>
   </div>
 
-  <!-- Dots + counter -->
-  <div style="display:flex;justify-content:center;gap:6px;margin-top:20px;" id="svc-dots"></div>
-  <div style="text-align:center;margin-top:6px;font-family:'Rubik',sans-serif;font-size:12px;color:#a3a3a3;" id="svc-counter"></div>
-
   <!-- Encart optionnel -->
-  <div class="section-inner" style="margin-top:48px;padding-bottom:0;">
+  <div class="section-inner" style="padding-top:48px;padding-bottom:80px;">
     <div style="border:1px dashed #e5e5e5;border-radius:12px;padding:20px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
       <div style="flex:1;min-width:200px;">
         <div style="font-size:14px;font-weight:600;font-family:'Rubik',sans-serif;color:#404040;margin-bottom:4px;">Optionnel — Après votre projet : accompagnement SEO mensuel à tarif préférentiel</div>
@@ -1752,42 +1758,28 @@
     {icon:"🏗️",tag:"Build",title:"Build full custom",desc:"Maquettes sur mesure, développement WordPress, SEO on-page, schema markup, architecture GEO-ready. Votre site ranke dès le jour 1.",price:"3 500 – 7 500 €",note:"Option : SEO mensuel 600 €/mois",cta:{label:"Obtenir mon estimation",href:"#estimateur"}}
   ];
   var N=OFFERS.length;
-  var current=0;
-  var animating=false;
   var ITEM_H=58;
-
+  var outer=document.getElementById("svc-outer");
   var labelsC=document.getElementById("svc-labels");
-  var cardArea=document.getElementById("svc-card-area");
+  var cardsC=document.getElementById("svc-cards");
   var dotsC=document.getElementById("svc-dots");
-  var counterC=document.getElementById("svc-counter");
-  var carousel=document.getElementById("svc-carousel");
-  if(!labelsC||!cardArea) return;
+  if(!outer||!labelsC||!cardsC) return;
 
+  // ── SETUP: outer height = N steps of scroll ──
+  var STEP=window.innerHeight;
+  outer.style.height=(N*STEP)+'px';
+
+  // ── BUILD LABELS ──
   var labelEls=[];
   OFFERS.forEach(function(o,i){
     var el=document.createElement("button");
     el.style.cssText="position:absolute;left:0;display:flex;align-items:center;gap:12px;padding:10px 20px;border-radius:100px;border:1px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.55);font-family:Rubik,sans-serif;font-size:13px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;cursor:pointer;transition:all .5s cubic-bezier(.32,.72,0,1);outline:none;";
     el.innerHTML='<span style="font-size:18px;line-height:1;">'+o.icon+'</span><span>'+o.title+'</span>';
-    el.onclick=function(){goTo(i);};
     labelsC.appendChild(el);
     labelEls.push(el);
   });
 
-  function updateLabels(){
-    labelEls.forEach(function(el,i){
-      var dist=i-current;
-      var y=dist*ITEM_H;
-      var op=1-Math.abs(dist)*0.22;
-      if(i===current){
-        el.style.transform="translateY("+y+"px)";el.style.opacity="1";
-        el.style.background="#fff";el.style.color="#FF6B6B";el.style.borderColor="#fff";el.style.zIndex="10";
-      } else {
-        el.style.transform="translateY("+y+"px)";el.style.opacity=String(Math.max(0,op));
-        el.style.background="transparent";el.style.color="rgba(255,255,255,0.55)";el.style.borderColor="rgba(255,255,255,0.2)";el.style.zIndex="1";
-      }
-    });
-  }
-
+  // ── BUILD CARDS ──
   var cardEls=[];
   OFFERS.forEach(function(o,i){
     var el=document.createElement("div");
@@ -1804,100 +1796,95 @@
       '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;"><span style="font-size:36px;line-height:1;">'+o.icon+'</span><span style="font-size:10px;font-weight:700;font-family:Rubik,sans-serif;letter-spacing:.8px;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:rgba(255,107,107,0.08);color:#FF6B6B;">'+o.tag+'</span></div>'+
       '<div style="font-family:Rubik,sans-serif;font-size:20px;font-weight:700;color:#1a1a1a;margin-bottom:10px;line-height:1.2;">'+o.title+'</div>'+
       '<div style="font-size:14px;color:#525252;line-height:1.6;">'+o.desc+'</div>'+ph+nt+ct;
-    cardArea.appendChild(el);
+    cardsC.appendChild(el);
     cardEls.push(el);
   });
 
-  function updateCards(){
+  // ── BUILD DOTS ──
+  var dotEls=[];
+  for(var i=0;i<N;i++){
+    var d=document.createElement('div');
+    d.style.cssText='width:7px;height:7px;border-radius:50%;transition:all .3s;background:#ddd;';
+    dotsC.appendChild(d);
+    dotEls.push(d);
+  }
+
+  // ── RENDER based on scroll progress ──
+  function render(){
+    var rect=outer.getBoundingClientRect();
+    var scrolled=Math.max(0,-rect.top);
+    var maxScroll=outer.offsetHeight-window.innerHeight;
+    if(maxScroll<=0) return;
+
+    var progress=Math.min(1,scrolled/maxScroll);
+    var raw=progress*(N-1);
+    var idx=Math.min(N-1,Math.floor(raw));
+    var frac=raw-idx;
+
+    // Update labels
+    labelEls.forEach(function(el,i){
+      // Smooth interpolation between steps
+      var activeDist=i-(idx+frac);
+      var y=activeDist*ITEM_H;
+      var op=Math.max(0,1-Math.abs(activeDist)*0.25);
+
+      el.style.transform="translateY("+y+"px)";
+      el.style.transition="none"; // driven by scroll, not CSS transition
+
+      if(Math.abs(activeDist)<0.5){
+        // Active
+        var blend=1-Math.abs(activeDist)*2; // 1 at center, 0 at edges
+        el.style.background="rgba(255,255,255,"+blend+")";
+        el.style.color=blend>0.5?"#FF6B6B":"rgba(255,255,255,"+(0.55+blend*0.45)+")";
+        el.style.borderColor="rgba(255,255,255,"+(0.2+blend*0.8)+")";
+        el.style.zIndex="10";
+        el.style.opacity="1";
+      } else {
+        el.style.background="transparent";
+        el.style.color="rgba(255,255,255,0.55)";
+        el.style.borderColor="rgba(255,255,255,0.2)";
+        el.style.zIndex="1";
+        el.style.opacity=String(op);
+      }
+    });
+
+    // Update cards — snap to nearest index for card transitions
+    var activeIdx=Math.round(raw);
     cardEls.forEach(function(el,i){
-      var diff=i-current;
-      if(diff===0){el.style.transform="translateX(0) scale(1) rotate(0deg)";el.style.opacity="1";el.style.zIndex="20";el.style.pointerEvents="auto";}
-      else if(diff===-1){el.style.transform="translateX(-80px) scale(0.88) rotate(-3deg)";el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";}
-      else if(diff===1){el.style.transform="translateX(80px) scale(0.88) rotate(3deg)";el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";}
-      else{el.style.transform="translateX(0) scale(0.7)";el.style.opacity="0";el.style.zIndex="0";el.style.pointerEvents="none";}
+      var diff=i-activeIdx;
+      if(diff===0){
+        el.style.transform="translateX(0) scale(1) rotate(0deg)";
+        el.style.opacity="1";el.style.zIndex="20";el.style.pointerEvents="auto";
+      } else if(diff===-1){
+        el.style.transform="translateX(-80px) scale(0.88) rotate(-3deg)";
+        el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";
+      } else if(diff===1){
+        el.style.transform="translateX(80px) scale(0.88) rotate(3deg)";
+        el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";
+      } else {
+        el.style.transform="translateX(0) scale(0.7)";
+        el.style.opacity="0";el.style.zIndex="0";el.style.pointerEvents="none";
+      }
+    });
+
+    // Update dots
+    dotEls.forEach(function(d,i){
+      d.style.background=i===activeIdx?"#FF6B6B":"#ddd";
+      d.style.transform=i===activeIdx?"scale(1.4)":"scale(1)";
     });
   }
 
-  function updateDots(){
-    dotsC.innerHTML='';
-    for(var i=0;i<N;i++){
-      var d=document.createElement('div');
-      d.style.cssText='width:7px;height:7px;border-radius:50%;cursor:pointer;transition:all .3s;'+(i===current?'background:#FF6B6B;transform:scale(1.4);':'background:#ddd;');
-      (function(idx){d.onclick=function(){goTo(idx);};})(i);
-      dotsC.appendChild(d);
-    }
-    counterC.textContent=(current+1)+' / '+N;
-  }
-
-  function goTo(idx){
-    if(idx===current||idx<0||idx>=N||animating) return;
-    animating=true;current=idx;
-    updateLabels();updateCards();updateDots();
-    setTimeout(function(){animating=false;},600);
-  }
-  function next(){if(current>=N-1||animating)return false;goTo(current+1);return true;}
-  function prev(){if(current<=0||animating)return false;goTo(current-1);return true;}
-
-  updateLabels();updateCards();updateDots();
-
-  // ── SIMPLE WHEEL CAPTURE ──
-  // Only preventDefault when carousel is well in view AND there are cards to navigate to.
-  // No body manipulation. Just eat the wheel event.
-
-  var wheelAcc=0;
-  var lastWheelTime=0;
-
-  carousel.addEventListener('wheel',function(e){
-    var down=e.deltaY>0;
-
-    // At boundaries: let scroll pass through naturally
-    if(down && current>=N-1) return;
-    if(!down && current<=0) return;
-
-    // Carousel captures the scroll
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Debounce rapid wheel events
-    var now=Date.now();
-    if(now-lastWheelTime<100){
-      wheelAcc+=e.deltaY;
-    } else {
-      wheelAcc=e.deltaY;
-    }
-    lastWheelTime=now;
-
-    if(Math.abs(wheelAcc)>=50){
-      if(wheelAcc>0) next(); else prev();
-      wheelAcc=0;
-    }
-  },{passive:false});
-
-  // Touch
-  var ty=0,ta=false;
-  carousel.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;ta=true;},{passive:true});
-  carousel.addEventListener('touchmove',function(e){
-    if(!ta) return;
-    var dy=ty-e.touches[0].clientY;
-    if(dy>0&&current>=N-1) return;
-    if(dy<0&&current<=0) return;
-    if(Math.abs(dy)>20) e.preventDefault();
-  },{passive:false});
-  carousel.addEventListener('touchend',function(e){
-    if(!ta) return;ta=false;
-    var dy=ty-e.changedTouches[0].clientY;
-    if(Math.abs(dy)>40){if(dy>0)next();else prev();}
-  },{passive:true});
-
-  // Auto-play
-  var autoTimer;
-  function startAuto(){autoTimer=setInterval(function(){if(!next())goTo(0);},4000);}
-  function stopAuto(){clearInterval(autoTimer);}
-  carousel.addEventListener('mouseenter',stopAuto);
-  carousel.addEventListener('mouseleave',startAuto);
-  startAuto();
+  render();
+  window.addEventListener('scroll',render,{passive:true});
+  window.addEventListener('resize',function(){
+    STEP=window.innerHeight;
+    outer.style.height=(N*STEP)+'px';
+    render();
+  });
 })();
 </script>
+
+
 
 
 
