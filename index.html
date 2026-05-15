@@ -1708,10 +1708,9 @@
 
   <!-- CARD STACK SCROLL -->
   <div id="services-stack-outer" style="position:relative;">
-    <div id="services-stack-sticky" style="position:sticky;top:80px;height:calc(100vh - 80px);display:flex;align-items:center;justify-content:center;overflow:hidden;">
-      <div id="services-stack" style="position:relative;width:min(640px,92vw);height:460px;"></div>
+    <div id="services-stack-sticky" style="position:sticky;top:80px;height:calc(100vh - 80px);display:flex;align-items:center;justify-content:center;">
+      <div id="services-stack" style="position:relative;width:min(640px,92vw);"></div>
     </div>
-    <div id="services-scroll-driver" aria-hidden="true"></div>
   </div>
 
   <!-- Encart optionnel après le stack -->
@@ -1935,11 +1934,12 @@
 
 
 
+
 <script>
 (function(){
   var cards = [
     {
-      icon:"🔍", tag:"One shot", tagColor:"#1a5fa8", tagBg:"#e6f1fb",
+      icon:"🔍", tag:"One shot", tagColor:"#1a5fa8", tagBg:"#ddeeff",
       title:"Audit SEO complet",
       desc:"Positionnement Google, mots-clés manqués, vitesse, Core Web Vitals, structure technique, contenu. Un diagnostic clair et un plan d'action priorisé. Compatible WordPress, Wix, Squarespace, Shopify.",
       price:"900 €", priceNote:"Livraison en 5 jours ouvrés"
@@ -1954,15 +1954,11 @@
       icon:"📊", tag:"Analytics", tagColor:"#a05c00", tagBg:"#fff3e0",
       title:"Setup GA4 & tracking complet",
       desc:"Audit de l\'existant, cross-domain tracking, GTM, événements personnalisés, Search Console connectée + appel de restitution. Vous saurez quelle page vous rapporte de l\'argent.",
-      priceTiers:[
-        {label:"Essentiel", price:"400–500 €"},
-        {label:"Avancé", price:"600–700 €"},
-        {label:"E-commerce", price:"800 €+"}
-      ],
+      priceTiers:[{label:"Essentiel",price:"400–500 €"},{label:"Avancé",price:"600–700 €"},{label:"E-commerce",price:"800 €+"}],
       priceNote:"Inclus sans surcoût dans tout Build ou Migration"
     },
     {
-      icon:"📈", tag:"Mensuel", tagColor:"#1a5fa8", tagBg:"#e6f1fb",
+      icon:"📈", tag:"Mensuel", tagColor:"#1a5fa8", tagBg:"#ddeeff",
       title:"Accompagnement SEO mensuel",
       desc:"Mots-clés stratégiques, articles qui attirent vos clients idéaux, suivi des positions chaque mois. Chaque action basée sur ce que vos clients tapent réellement sur Google.",
       price:"800 €/mois", priceNote:"Compatible WordPress, Wix, Squarespace, Podia"
@@ -1971,10 +1967,7 @@
       icon:"🔄", tag:"Build", tagColor:"#1a7a4a", tagBg:"#e6f7ef",
       title:"Migration vers WordPress",
       desc:"Migration Wix, Squarespace ou autre vers WordPress. Conservation du SEO, redirections, architecture optimisée. SEO de base inclus dès le départ.",
-      priceTiers:[
-        {label:"Sans refonte design", price:"2 000 €"},
-        {label:"Avec refonte design", price:"3 500 €"}
-      ],
+      priceTiers:[{label:"Sans refonte design",price:"2 000 €"},{label:"Avec refonte design",price:"3 500 €"}],
       priceNote:"Option : accompagnement SEO 600 €/mois"
     },
     {
@@ -1986,114 +1979,156 @@
     }
   ];
 
-  var stack = document.getElementById('services-stack');
-  var driver = document.getElementById('services-scroll-driver');
-  if (!stack || !driver) return;
+  var stack  = document.getElementById('services-stack');
+  if (!stack) return;
 
-  var CARD_H = 460;
-  var STEP = Math.max(300, window.innerHeight * 0.85);
-  driver.style.height = (cards.length * STEP + window.innerHeight * 0.4) + 'px';
+  var outer  = document.getElementById('services-stack-outer');
+  var VH     = window.innerHeight;
+  var STEP   = VH;
+  var CARD_H = Math.min(460, VH * 0.72);
 
-  function buildCard(c) {
+  // Give outer explicit height so page has scroll room
+  outer.style.height = (cards.length * STEP + VH) + 'px';
+
+  // ── build card DOM ──────────────────────────────────────────────
+  function buildCard(c, i) {
     var el = document.createElement('div');
-    el.style.cssText = 'position:absolute;left:0;right:0;top:0;background:#fff;border-radius:20px;border:1px solid #e5e5e5;padding:28px 32px 24px;box-sizing:border-box;box-shadow:0 8px 32px rgba(0,0,0,0.08);display:flex;flex-direction:column;height:'+CARD_H+'px;will-change:transform;transform-origin:50% 50%;pointer-events:auto;';
+    el.style.cssText =
+      'position:absolute;left:0;right:0;top:0;' +
+      'height:' + CARD_H + 'px;' +
+      'background:#fff;border-radius:20px;' +
+      'border:1px solid #e8e8e8;' +
+      'padding:28px 32px 24px;box-sizing:border-box;' +
+      'box-shadow:0 8px 40px rgba(0,0,0,0.10);' +
+      'display:flex;flex-direction:column;' +
+      'will-change:transform,opacity;pointer-events:auto;';
 
-    var priceBlock = '';
+    // price block
+    var priceHtml = '';
     if (c.priceTiers) {
       var tiers = c.priceTiers.map(function(t){
-        return '<div style="background:#f5f5f5;border-radius:10px;padding:10px 12px;text-align:center;"><div style="font-family:Rubik,sans-serif;font-size:14px;font-weight:700;color:#1a1a1a;">'+t.price+'</div><div style="font-size:11px;color:#737373;margin-top:2px;">'+t.label+'</div></div>';
+        return '<div style="background:#f5f5f5;border-radius:10px;padding:10px 12px;text-align:center;">' +
+               '<div style="font-family:Rubik,sans-serif;font-size:14px;font-weight:700;color:#1a1a1a;">'+t.price+'</div>' +
+               '<div style="font-size:11px;color:#737373;margin-top:2px;">'+t.label+'</div></div>';
       }).join('');
-      priceBlock = '<div style="display:grid;grid-template-columns:repeat('+c.priceTiers.length+',1fr);gap:8px;margin-top:auto;padding-top:16px;">'+tiers+'</div>';
+      priceHtml = '<div style="display:grid;grid-template-columns:repeat('+c.priceTiers.length+',1fr);gap:8px;margin-top:auto;padding-top:16px;">'+tiers+'</div>';
     } else {
-      priceBlock = '<div style="margin-top:auto;padding-top:16px;"><span style="font-family:Rubik,sans-serif;font-size:30px;font-weight:700;background:linear-gradient(135deg,#FF6B6B,#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">'+c.price+'</span></div>';
+      priceHtml = '<div style="margin-top:auto;padding-top:16px;">' +
+        '<span style="font-family:Rubik,sans-serif;font-size:30px;font-weight:700;background:linear-gradient(135deg,#FF6B6B,#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">' + c.price + '</span></div>';
     }
 
-    var ctaHtml = c.cta ? '<a href="'+c.cta.href+'" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:10px 18px;background:linear-gradient(135deg,#FF6B6B,#FFB347);color:#fff;border-radius:10px;font-size:13px;font-weight:600;font-family:Rubik,sans-serif;text-decoration:none;width:fit-content;">'+c.cta.label+' →</a>' : '';
-    var noteHtml = c.priceNote ? '<div style="font-size:11px;color:#a3a3a3;margin-top:6px;">'+c.priceNote+'</div>' : '';
+    var noteHtml = c.priceNote
+      ? '<div style="font-size:11px;color:#a3a3a3;margin-top:6px;">'+c.priceNote+'</div>' : '';
+    var ctaHtml  = c.cta
+      ? '<a href="'+c.cta.href+'" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:10px 18px;background:linear-gradient(135deg,#FF6B6B,#FFB347);color:#fff;border-radius:10px;font-size:13px;font-weight:600;font-family:Rubik,sans-serif;text-decoration:none;width:fit-content;">'+c.cta.label+' &#8594;</a>' : '';
 
     el.innerHTML =
-      '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">' +
+      '<div style="margin-bottom:14px;">' +
         '<span style="display:inline-block;font-size:11px;font-weight:700;font-family:Rubik,sans-serif;letter-spacing:.8px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:'+c.tagBg+';color:'+c.tagColor+';">'+c.tag+'</span>' +
       '</div>' +
       '<div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;">' +
         '<div style="font-size:32px;line-height:1;flex-shrink:0;">'+c.icon+'</div>' +
-        '<div style="font-family:Rubik,sans-serif;font-size:21px;font-weight:700;color:#1a1a1a;line-height:1.2;">'+c.title+'</div>' +
+        '<div style="font-family:Rubik,sans-serif;font-size:20px;font-weight:700;color:#1a1a1a;line-height:1.25;">'+c.title+'</div>' +
       '</div>' +
       '<div style="font-size:14px;color:#525252;line-height:1.65;">'+c.desc+'</div>' +
-      priceBlock + noteHtml + ctaHtml;
+      priceHtml + noteHtml + ctaHtml;
+
     return el;
   }
 
-  var cardEls = cards.map(function(c){ var el = buildCard(c); stack.appendChild(el); return el; });
+  var cardEls = cards.map(function(c, i){ var el = buildCard(c, i); stack.appendChild(el); return el; });
+  stack.style.height = CARD_H + 'px';
+  stack.style.overflow = 'visible';
 
-  var BY = [0, -20, -38, -52];
-  var BS = [1, 0.96, 0.92, 0.88];
+  // ── dots ────────────────────────────────────────────────────────
+  var sticky = document.getElementById('services-stack-sticky');
+  sticky.style.position = 'relative';
 
-  function applyStack(idx) {
-    cardEls.forEach(function(el, i) {
-      var rel = i - idx;
-      if (rel < 0) {
-        el.style.transition = 'transform .55s cubic-bezier(.32,.72,0,1),opacity .4s';
-        el.style.transform = 'translateY('+(CARD_H+60)+'px) scale(1)';
-        el.style.opacity = '0';
-        el.style.zIndex = '0';
-      } else if (rel === 0) {
-        el.style.transition = 'transform .55s cubic-bezier(.32,.72,0,1),opacity .4s';
-        el.style.transform = 'translateY(0) scale(1)';
-        el.style.opacity = '1';
-        el.style.zIndex = String(cards.length + 1);
-      } else if (rel <= 3) {
-        el.style.transition = 'transform .55s cubic-bezier(.32,.72,0,1),opacity .4s';
-        el.style.transform = 'translateY('+BY[rel]+'px) scale('+BS[rel]+')';
-        el.style.opacity = rel === 1 ? '0.7' : rel === 2 ? '0.45' : '0.2';
-        el.style.zIndex = String(cards.length - rel);
-      } else {
-        el.style.transition = 'none';
-        el.style.transform = 'translateY(-60px) scale('+BS[3]+')';
-        el.style.opacity = '0';
-        el.style.zIndex = '0';
-      }
-    });
-  }
-
-  applyStack(0);
-
-  // Dots
   var dotsWrap = document.createElement('div');
-  dotsWrap.style.cssText = 'position:absolute;right:-28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:7px;';
+  dotsWrap.style.cssText = 'position:absolute;right:-28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:10;';
   var dotEls = cards.map(function(_, i){
     var d = document.createElement('div');
-    d.style.cssText = 'width:6px;height:6px;border-radius:50%;background:#e5e5e5;transition:background .3s,transform .3s;';
+    d.style.cssText = 'width:6px;height:6px;border-radius:50%;background:#ddd;transition:background .3s,transform .3s;cursor:pointer;';
     dotsWrap.appendChild(d);
     return d;
   });
-  document.getElementById('services-stack-sticky').style.position = 'relative';
-  document.getElementById('services-stack-sticky').appendChild(dotsWrap);
+  sticky.appendChild(dotsWrap);
 
-  function updateDots(idx) {
-    dotEls.forEach(function(d, i){
-      d.style.background = i === idx ? '#FF6B6B' : '#e5e5e5';
-      d.style.transform = i === idx ? 'scale(1.5)' : 'scale(1)';
-    });
-  }
-
-  // Counter badge
-  var counter = document.createElement('div');
-  counter.style.cssText = 'position:absolute;bottom:-36px;left:50%;transform:translateX(-50%);font-family:Rubik,sans-serif;font-size:12px;color:#a3a3a3;white-space:nowrap;';
-  document.getElementById('services-stack-sticky').appendChild(counter);
+  // ── render ──────────────────────────────────────────────────────
+  var lastIdx = -1;
 
   function render() {
-    var outer = document.getElementById('services-stack-outer');
     if (!outer) return;
-    var rect = outer.getBoundingClientRect();
-    var scrolled = -rect.top;
-    var idx = Math.max(0, Math.min(cards.length - 1, Math.floor(scrolled / STEP)));
-    applyStack(idx);
-    updateDots(idx);
-    counter.textContent = (idx + 1) + ' / ' + cards.length;
+    var scrolled = -outer.getBoundingClientRect().top;
+    // raw progress: 0 at first card, N-1 at last
+    var raw = scrolled / STEP;
+    var idx = Math.max(0, Math.min(cards.length - 1, Math.floor(raw)));
+    // how far through the current step (0→1)
+    var frac = raw - Math.floor(raw);
+
+    cardEls.forEach(function(el, i) {
+      var rel = i - idx;   // negative = past, 0 = active, positive = upcoming
+
+      if (rel < -1) {
+        // fully gone
+        el.style.transition = 'none';
+        el.style.transform   = 'translateY(' + (CARD_H + 60) + 'px) scale(0.9)';
+        el.style.opacity     = '0';
+        el.style.zIndex      = '0';
+        return;
+      }
+
+      if (rel === -1) {
+        // leaving card: slides up and fades as frac goes 0→1
+        var progress = frac;           // 0 = still visible, 1 = gone
+        var ty = -progress * (CARD_H * 0.25 + 40);
+        var sc = 1 - progress * 0.06;
+        el.style.transition  = 'none';
+        el.style.transform   = 'translateY('+ty+'px) scale('+sc+')';
+        el.style.opacity     = String(Math.max(0, 1 - progress * 2));
+        el.style.zIndex      = String(cards.length + 2);
+        return;
+      }
+
+      if (rel === 0) {
+        // entering card: slides in from below as frac goes 0→1
+        // when frac=0 it's at the top (just became active), fully visible
+        el.style.transition  = 'none';
+        el.style.transform   = 'translateY(0) scale(1)';
+        el.style.opacity     = '1';
+        el.style.zIndex      = String(cards.length + 1);
+        return;
+      }
+
+      // upcoming cards stacked behind
+      var stackPos = Math.min(rel, 3);
+      var stackY   = [-38, -24, -12, 0][3 - stackPos] * -1;
+      var stackS   = [0.88, 0.92, 0.96, 1][4 - Math.min(stackPos,3) - 1];
+      var stackO   = [0.15, 0.35, 0.6][Math.min(rel - 1, 2)];
+
+      el.style.transition = 'none';
+      el.style.transform  = 'translateY('+stackY+'px) scale('+stackS+')';
+      el.style.opacity    = String(stackO);
+      el.style.zIndex     = String(Math.max(0, cards.length - rel));
+    });
+
+    // dots
+    if (idx !== lastIdx) {
+      dotEls.forEach(function(d, i){
+        d.style.background = i === idx ? '#FF6B6B' : '#ddd';
+        d.style.transform  = i === idx ? 'scale(1.6)' : 'scale(1)';
+      });
+      lastIdx = idx;
+    }
   }
 
   window.addEventListener('scroll', render, {passive:true});
+  window.addEventListener('resize', function(){
+    VH = window.innerHeight;
+    STEP = VH;
+    outer.style.height = (cards.length * STEP + VH) + 'px';
+    render();
+  });
   render();
 })();
 </script>
