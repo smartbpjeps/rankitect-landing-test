@@ -1754,6 +1754,7 @@
   var N=OFFERS.length;
   var current=0;
   var animating=false;
+  var trapped=false;
   var ITEM_H=58;
 
   var labelsC=document.getElementById("svc-labels");
@@ -1827,29 +1828,20 @@
       var diff=i-current;
       if(diff===0){
         el.style.transform="translateX(0) scale(1) rotate(0deg)";
-        el.style.opacity="1";
-        el.style.zIndex="20";
-        el.style.pointerEvents="auto";
+        el.style.opacity="1";el.style.zIndex="20";el.style.pointerEvents="auto";
       } else if(diff===-1){
         el.style.transform="translateX(-80px) scale(0.88) rotate(-3deg)";
-        el.style.opacity="0.35";
-        el.style.zIndex="10";
-        el.style.pointerEvents="none";
+        el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";
       } else if(diff===1){
         el.style.transform="translateX(80px) scale(0.88) rotate(3deg)";
-        el.style.opacity="0.35";
-        el.style.zIndex="10";
-        el.style.pointerEvents="none";
+        el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";
       } else {
         el.style.transform="translateX(0) scale(0.7)";
-        el.style.opacity="0";
-        el.style.zIndex="0";
-        el.style.pointerEvents="none";
+        el.style.opacity="0";el.style.zIndex="0";el.style.pointerEvents="none";
       }
     });
   }
 
-  // ── DOTS ──
   function updateDots(){
     dotsC.innerHTML='';
     for(var i=0;i<N;i++){
@@ -1865,70 +1857,131 @@
     if(idx===current||idx<0||idx>=N||animating) return;
     animating=true;
     current=idx;
-    updateLabels();
-    updateCards();
-    updateDots();
+    updateLabels();updateCards();updateDots();
     setTimeout(function(){animating=false;},600);
   }
 
-  function next(){
-    if(current>=N-1||animating) return false;
-    goTo(current+1);
-    return true;
-  }
-  function prev(){
-    if(current<=0||animating) return false;
-    goTo(current-1);
-    return true;
+  function next(){if(current>=N-1||animating)return false;goTo(current+1);return true;}
+  function prev(){if(current<=0||animating)return false;goTo(current-1);return true;}
+
+  updateLabels();updateCards();updateDots();
+
+  // ── SCROLL LOCK ──
+  // When trapped: body overflow hidden, no page jump.
+  // Enter trap when carousel scrolls into center of viewport.
+  // Exit trap when user scrolls past last/first card.
+
+  var savedScrollY=0;
+  var savedBodyOverflow='';
+  var savedBodyPosition='';
+  var savedBodyTop='';
+  var savedBodyWidth='';
+
+  function lockScroll(){
+    if(trapped) return;
+    trapped=true;
+    savedScrollY=window.scrollY;
+    savedBodyOverflow=document.body.style.overflow;
+    savedBodyPosition=document.body.style.position;
+    savedBodyTop=document.body.style.top;
+    savedBodyWidth=document.body.style.width;
+    document.body.style.overflow='hidden';
+    document.body.style.position='fixed';
+    document.body.style.top=(-savedScrollY)+'px';
+    document.body.style.width='100%';
   }
 
-  // Initial render
-  updateLabels();
-  updateCards();
-  updateDots();
+  function unlockScroll(){
+    if(!trapped) return;
+    trapped=false;
+    document.body.style.overflow=savedBodyOverflow;
+    document.body.style.position=savedBodyPosition;
+    document.body.style.top=savedBodyTop;
+    document.body.style.width=savedBodyWidth;
+    window.scrollTo(0,savedScrollY);
+  }
 
-  // ── SCROLL TRAP ──
-  function isInView(){
+  function carouselInView(){
     var r=carousel.getBoundingClientRect();
-    return r.top<window.innerHeight*0.7&&r.bottom>window.innerHeight*0.3;
+    var vh=window.innerHeight;
+    // Carousel center is in the viewport middle third
+    var center=r.top+r.height/2;
+    return center>vh*0.15 && center<vh*0.85;
   }
+
+  // Track if we should enter the trap
+  var enteredOnce=false;
+  window.addEventListener('scroll',function(){
+    if(trapped) return;
+    if(carouselInView()&&!enteredOnce){
+      // Don't auto-enter, wait for first wheel
+    }
+  },{passive:true});
 
   var wheelAcc=0;
   window.addEventListener('wheel',function(e){
-    if(!isInView()){wheelAcc=0;return;}
     var down=e.deltaY>0;
-    if(down&&current>=N-1){wheelAcc=0;return;}
-    if(!down&&current<=0){wheelAcc=0;return;}
-    e.preventDefault();
-    wheelAcc+=e.deltaY;
-    if(Math.abs(wheelAcc)>=80){
-      if(wheelAcc>0)next();else prev();
+    var up=e.deltaY<0;
+
+    if(trapped){
+      e.preventDefault();
+      wheelAcc+=e.deltaY;
+      if(Math.abs(wheelAcc)<60) return;
+
+      var moved=false;
+      if(wheelAcc>0) moved=next();
+      else moved=prev();
       wheelAcc=0;
+
+      // If couldn't move (at boundary), unlock and let page scroll
+      if(!moved){
+        unlockScroll();
+        enteredOnce=true;
+        // Reset after a bit so re-scrolling back in can re-trap
+        setTimeout(function(){enteredOnce=false;},1500);
+      }
+      return;
     }
+
+    // Not trapped: check if we should trap
+    if(!carouselInView()){wheelAcc=0;return;}
+
+    // Entering: only trap if there are cards in the scroll direction
+    if(down && current<N-1){
+      e.preventDefault();
+      lockScroll();
+      wheelAcc=e.deltaY;
+    } else if(up && current>0){
+      e.preventDefault();
+      lockScroll();
+      wheelAcc=e.deltaY;
+    }
+    // Otherwise let scroll pass through
   },{passive:false});
 
   // Touch
   var ty=0,ta=false;
   carousel.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;ta=true;},{passive:true});
   window.addEventListener('touchmove',function(e){
-    if(!ta||!isInView())return;
+    if(!ta) return;
     var dy=ty-e.touches[0].clientY;
-    if(dy>0&&current>=N-1)return;
-    if(dy<0&&current<=0)return;
-    if(Math.abs(dy)>20)e.preventDefault();
+    if(!carouselInView()) return;
+    if(dy>0&&current>=N-1) return;
+    if(dy<0&&current<=0) return;
+    if(Math.abs(dy)>20) e.preventDefault();
   },{passive:false});
   carousel.addEventListener('touchend',function(e){
-    if(!ta)return;ta=false;
+    if(!ta) return;ta=false;
     var dy=ty-e.changedTouches[0].clientY;
     if(Math.abs(dy)>40){if(dy>0)next();else prev();}
   },{passive:true});
 
-  // Auto-play (optional, pauses on hover)
+  // Auto-play
   var autoTimer;
   function startAuto(){autoTimer=setInterval(function(){if(!next())goTo(0);},4000);}
   function stopAuto(){clearInterval(autoTimer);}
-  carousel.addEventListener('mouseenter',stopAuto);
-  carousel.addEventListener('mouseleave',startAuto);
+  carousel.addEventListener('mouseenter',function(){stopAuto();});
+  carousel.addEventListener('mouseleave',function(){startAuto();});
   startAuto();
 })();
 </script>
