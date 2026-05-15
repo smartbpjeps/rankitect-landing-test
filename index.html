@@ -1702,24 +1702,31 @@
         <a href="#contact" style="display:inline-flex;align-items:center;gap:6px;padding:11px 20px;background:linear-gradient(135deg,#FF6B6B,#FFB347);color:#fff;border-radius:10px;font-size:14px;font-weight:600;font-family:'Rubik',sans-serif;text-decoration:none;">Réserver mon appel →</a>
       </div>
     </div>
+  </div>
 
-    <!-- CARD STACK -->
-    <div id="card-stack-viewport" style="position:relative;width:100%;max-width:640px;margin:0 auto;height:380px;overflow:hidden;">
-      <!-- Cards injected by JS -->
-    </div>
-    <div style="display:flex;justify-content:center;gap:6px;margin-top:20px;" id="card-stack-dots"></div>
-    <div style="text-align:center;margin-top:8px;font-family:'Rubik',sans-serif;font-size:12px;color:#a3a3a3;" id="card-stack-counter"></div>
+  <!-- FEATURE CAROUSEL -->
+  <div id="svc-carousel" style="position:relative;overflow:hidden;border-radius:32px;display:flex;min-height:560px;border:1px solid #e5e5e5;max-width:1100px;margin:0 auto;">
 
-    <!-- Scroll hint -->
-    <div style="text-align:center;margin-top:12px;">
-      <div style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#a3a3a3;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#ccc;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        Scrollez pour voir les offres
-      </div>
+    <!-- LEFT: Labels list -->
+    <div id="svc-left" style="width:40%;min-width:280px;background:linear-gradient(135deg,#FF6B6B,#FFB347);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0 16px;">
+      <div style="position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(to bottom,#FF6B6B,transparent);z-index:3;"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to top,#FFB347,transparent);z-index:3;"></div>
+      <div id="svc-labels" style="position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:flex-start;padding-left:24px;"></div>
     </div>
 
-    <!-- Encart optionnel -->
-    <div style="border:1px dashed #e5e5e5;border-radius:12px;padding:20px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:48px;">
+    <!-- RIGHT: Card display -->
+    <div id="svc-right" style="flex:1;background:#fafafa;display:flex;align-items:center;justify-content:center;padding:40px 32px;position:relative;overflow:hidden;">
+      <div id="svc-card-area" style="position:relative;width:100%;max-width:420px;aspect-ratio:4/5;"></div>
+    </div>
+  </div>
+
+  <!-- Dots + counter -->
+  <div style="display:flex;justify-content:center;gap:6px;margin-top:20px;" id="svc-dots"></div>
+  <div style="text-align:center;margin-top:6px;font-family:'Rubik',sans-serif;font-size:12px;color:#a3a3a3;" id="svc-counter"></div>
+
+  <!-- Encart optionnel -->
+  <div class="section-inner" style="margin-top:48px;padding-bottom:0;">
+    <div style="border:1px dashed #e5e5e5;border-radius:12px;padding:20px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
       <div style="flex:1;min-width:200px;">
         <div style="font-size:14px;font-weight:600;font-family:'Rubik',sans-serif;color:#404040;margin-bottom:4px;">Optionnel — Après votre projet : accompagnement SEO mensuel à tarif préférentiel</div>
         <div style="font-size:13px;color:#737373;line-height:1.5;">Que ce soit après une migration ou un build, continuez à croître : articles de blog, suivi des positions, optimisations continues.</div>
@@ -1731,175 +1738,202 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <script>
 (function(){
-  var CARDS = [
-    {icon:"🔍",tag:"One shot",tagColor:"#1a5fa8",tagBg:"#ddeeff",title:"Audit SEO complet",desc:"Positionnement Google, mots-clés manqués, vitesse, Core Web Vitals, structure technique, contenu. Un diagnostic clair et un plan d'action priorisé. Compatible WordPress, Wix, Squarespace, Shopify.",price:"900 €",priceNote:"Livraison en 5 jours ouvrés"},
-    {icon:"🤖",tag:"One shot",tagColor:"#7c3aab",tagBg:"#f0e8fb",title:"Audit + déploiement GEO",desc:"ChatGPT, Perplexity, Gemini citent déjà des entreprises à votre place. On audite votre visibilité IA puis on structure vos contenus : schema markup, llms.txt, architecture optimisée.",price:"500 €",priceNote:"Vos concurrents n'y sont pas encore"},
-    {icon:"📊",tag:"Analytics",tagColor:"#a05c00",tagBg:"#fff3e0",title:"Setup GA4 & tracking complet",desc:"Audit de l'existant, cross-domain tracking, GTM, événements personnalisés, Search Console connectée + appel de restitution. Vous saurez quelle page vous rapporte de l'argent.",priceTiers:[{l:"Essentiel",p:"400–500 €"},{l:"Avancé",p:"600–700 €"},{l:"E-commerce",p:"800 €+"}],priceNote:"Inclus sans surcoût dans tout Build ou Migration"},
-    {icon:"📈",tag:"Mensuel",tagColor:"#1a5fa8",tagBg:"#ddeeff",title:"Accompagnement SEO mensuel",desc:"Mots-clés stratégiques, articles qui attirent vos clients idéaux, suivi des positions chaque mois. Chaque action basée sur ce que vos clients tapent réellement sur Google.",price:"800 €/mois",priceNote:"Compatible WordPress, Wix, Squarespace, Podia"},
-    {icon:"🔄",tag:"Build",tagColor:"#1a7a4a",tagBg:"#e6f7ef",title:"Migration vers WordPress",desc:"Migration Wix, Squarespace ou autre vers WordPress. Conservation du SEO, redirections, architecture optimisée. SEO de base inclus dès le départ.",priceTiers:[{l:"Sans refonte design",p:"2 000 €"},{l:"Avec refonte design",p:"3 500 €"}],priceNote:"Option : accompagnement SEO 600 €/mois"},
-    {icon:"🏗️",tag:"Build",tagColor:"#c0320a",tagBg:"#fdeee9",title:"Build WordPress full custom",desc:"Maquettes sur mesure, développement WordPress, SEO on-page, schema markup, architecture GEO-ready. SEO de base inclus dès le lancement pour ranker dès le jour 1.",price:"3 500 – 7 500 €",priceNote:"Option : accompagnement SEO 600 €/mois",cta:{label:"Obtenir mon estimation",href:"#estimateur"}}
+  var OFFERS=[
+    {icon:"🔍",tag:"One shot",title:"Audit SEO complet",desc:"Positionnement Google, mots-clés manqués, vitesse, Core Web Vitals, structure technique, contenu. Un diagnostic clair et un plan d'action priorisé.",price:"900 €",note:"Livraison en 5 jours ouvrés"},
+    {icon:"🤖",tag:"One shot",title:"Audit + déploiement GEO",desc:"ChatGPT, Perplexity, Gemini citent déjà des entreprises à votre place. On audite votre visibilité IA, schema markup, llms.txt, architecture optimisée.",price:"500 €",note:"Vos concurrents n'y sont pas encore"},
+    {icon:"📊",tag:"Analytics",title:"Setup GA4 & tracking",desc:"Audit de l'existant, cross-domain tracking, GTM, événements personnalisés, Search Console connectée. Vous saurez quelle page rapporte de l'argent.",tiers:[{l:"Essentiel",p:"400–500 €"},{l:"Avancé",p:"600–700 €"},{l:"E-commerce",p:"800 €+"}],note:"Inclus dans tout Build ou Migration"},
+    {icon:"📈",tag:"Mensuel",title:"Accompagnement SEO",desc:"Mots-clés stratégiques, articles qui attirent vos clients idéaux, suivi des positions chaque mois. Compatible WordPress, Wix, Squarespace, Podia.",price:"800 €/mois",note:"Actions basées sur les recherches réelles"},
+    {icon:"🔄",tag:"Build",title:"Migration WordPress",desc:"Migration Wix, Squarespace ou autre vers WordPress. Conservation du SEO, redirections, architecture optimisée. SEO de base inclus.",tiers:[{l:"Sans refonte",p:"2 000 €"},{l:"Avec refonte",p:"3 500 €"}],note:"Option : SEO mensuel 600 €/mois"},
+    {icon:"🏗️",tag:"Build",title:"Build full custom",desc:"Maquettes sur mesure, développement WordPress, SEO on-page, schema markup, architecture GEO-ready. Votre site ranke dès le jour 1.",price:"3 500 – 7 500 €",note:"Option : SEO mensuel 600 €/mois",cta:{label:"Obtenir mon estimation",href:"#estimateur"}}
   ];
-  var N=CARDS.length;
-  var vp=document.getElementById("card-stack-viewport");
-  var dotsC=document.getElementById("card-stack-dots");
-  var countC=document.getElementById("card-stack-counter");
-  if(!vp) return;
-
-  var CARD_H=340;
-  var POS=[{s:1,y:12},{s:0.95,y:-16},{s:0.9,y:-44}];
+  var N=OFFERS.length;
   var current=0;
   var animating=false;
-  var trapped=false; // is scroll trapped in the stack?
+  var ITEM_H=58;
 
-  function cardHTML(c){
+  var labelsC=document.getElementById("svc-labels");
+  var cardArea=document.getElementById("svc-card-area");
+  var dotsC=document.getElementById("svc-dots");
+  var counterC=document.getElementById("svc-counter");
+  var carousel=document.getElementById("svc-carousel");
+  if(!labelsC||!cardArea) return;
+
+  // ── BUILD LEFT LABELS ──
+  var labelEls=[];
+  OFFERS.forEach(function(o,i){
+    var el=document.createElement("button");
+    el.style.cssText="position:absolute;left:0;display:flex;align-items:center;gap:12px;padding:10px 20px;border-radius:100px;border:1px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.55);font-family:Rubik,sans-serif;font-size:13px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;cursor:pointer;transition:all .5s cubic-bezier(.32,.72,0,1);outline:none;";
+    el.innerHTML='<span style="font-size:18px;line-height:1;">'+o.icon+'</span><span>'+o.title+'</span>';
+    el.onclick=function(){goTo(i);};
+    labelsC.appendChild(el);
+    labelEls.push(el);
+  });
+
+  function updateLabels(){
+    labelEls.forEach(function(el,i){
+      var dist=i-current;
+      var y=dist*ITEM_H;
+      var op=1-Math.abs(dist)*0.22;
+      if(i===current){
+        el.style.transform="translateY("+y+"px)";
+        el.style.opacity="1";
+        el.style.background="#fff";
+        el.style.color="#FF6B6B";
+        el.style.borderColor="#fff";
+        el.style.zIndex="10";
+      } else {
+        el.style.transform="translateY("+y+"px)";
+        el.style.opacity=String(Math.max(0,op));
+        el.style.background="transparent";
+        el.style.color="rgba(255,255,255,0.55)";
+        el.style.borderColor="rgba(255,255,255,0.2)";
+        el.style.zIndex="1";
+      }
+    });
+  }
+
+  // ── BUILD RIGHT CARDS ──
+  var cardEls=[];
+  OFFERS.forEach(function(o,i){
+    var el=document.createElement("div");
+    el.style.cssText="position:absolute;inset:0;border-radius:24px;overflow:hidden;background:#fff;border:1px solid #e5e5e5;box-shadow:0 8px 40px rgba(0,0,0,0.08);display:flex;flex-direction:column;padding:28px 24px 22px;box-sizing:border-box;transition:all .55s cubic-bezier(.32,.72,0,1);";
+
     var ph;
-    if(c.priceTiers){
-      ph='<div style="display:grid;grid-template-columns:repeat('+c.priceTiers.length+',1fr);gap:8px;margin-top:auto;padding-top:14px;">'+c.priceTiers.map(function(t){return '<div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;text-align:center;"><div style="font-family:Rubik,sans-serif;font-size:13px;font-weight:700;color:#1a1a1a;">'+t.p+'</div><div style="font-size:10px;color:#737373;margin-top:2px;">'+t.l+'</div></div>';}).join('')+'</div>';
+    if(o.tiers){
+      ph='<div style="display:grid;grid-template-columns:repeat('+o.tiers.length+',1fr);gap:8px;margin-top:auto;padding-top:16px;">'+o.tiers.map(function(t){return '<div style="background:#f5f5f5;border-radius:10px;padding:10px 10px;text-align:center;"><div style="font-family:Rubik,sans-serif;font-size:14px;font-weight:700;color:#1a1a1a;">'+t.p+'</div><div style="font-size:10px;color:#737373;margin-top:2px;">'+t.l+'</div></div>';}).join('')+'</div>';
     } else {
-      ph='<div style="margin-top:auto;padding-top:14px;"><span style="font-family:Rubik,sans-serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,#FF6B6B,#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">'+c.price+'</span></div>';
+      ph='<div style="margin-top:auto;padding-top:16px;"><span style="font-family:Rubik,sans-serif;font-size:30px;font-weight:700;background:linear-gradient(135deg,#FF6B6B,#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">'+o.price+'</span></div>';
     }
-    var nt=c.priceNote?'<div style="font-size:11px;color:#a3a3a3;margin-top:4px;">'+c.priceNote+'</div>':'';
-    var ct=c.cta?'<a href="'+c.cta.href+'" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:9px 16px;background:linear-gradient(135deg,#FF6B6B,#FFB347);color:#fff;border-radius:10px;font-size:12px;font-weight:600;font-family:Rubik,sans-serif;text-decoration:none;">'+c.cta.label+' &#8594;</a>':'';
-    return '<div style="margin-bottom:12px;"><span style="font-size:10px;font-weight:700;font-family:Rubik,sans-serif;letter-spacing:.8px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:'+c.tagBg+';color:'+c.tagColor+';">'+c.tag+'</span></div><div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;"><div style="font-size:28px;line-height:1;">'+c.icon+'</div><div style="font-family:Rubik,sans-serif;font-size:18px;font-weight:700;color:#1a1a1a;line-height:1.2;">'+c.title+'</div></div><div style="font-size:13px;color:#525252;line-height:1.6;">'+c.desc+'</div>'+ph+nt+ct;
+    var nt=o.note?'<div style="font-size:11px;color:#a3a3a3;margin-top:6px;">'+o.note+'</div>':'';
+    var ct=o.cta?'<a href="'+o.cta.href+'" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:10px 18px;background:linear-gradient(135deg,#FF6B6B,#FFB347);color:#fff;border-radius:10px;font-size:12px;font-weight:600;font-family:Rubik,sans-serif;text-decoration:none;">'+o.cta.label+' &#8594;</a>':'';
+
+    el.innerHTML=
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;"><span style="font-size:36px;line-height:1;">'+o.icon+'</span><span style="font-size:10px;font-weight:700;font-family:Rubik,sans-serif;letter-spacing:.8px;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:rgba(255,107,107,0.08);color:#FF6B6B;">'+o.tag+'</span></div>'+
+      '<div style="font-family:Rubik,sans-serif;font-size:20px;font-weight:700;color:#1a1a1a;margin-bottom:10px;line-height:1.2;">'+o.title+'</div>'+
+      '<div style="font-size:14px;color:#525252;line-height:1.6;">'+o.desc+'</div>'+
+      ph+nt+ct;
+
+    cardArea.appendChild(el);
+    cardEls.push(el);
+  });
+
+  function updateCards(){
+    cardEls.forEach(function(el,i){
+      var diff=i-current;
+      if(diff===0){
+        el.style.transform="translateX(0) scale(1) rotate(0deg)";
+        el.style.opacity="1";
+        el.style.zIndex="20";
+        el.style.pointerEvents="auto";
+      } else if(diff===-1){
+        el.style.transform="translateX(-80px) scale(0.88) rotate(-3deg)";
+        el.style.opacity="0.35";
+        el.style.zIndex="10";
+        el.style.pointerEvents="none";
+      } else if(diff===1){
+        el.style.transform="translateX(80px) scale(0.88) rotate(3deg)";
+        el.style.opacity="0.35";
+        el.style.zIndex="10";
+        el.style.pointerEvents="none";
+      } else {
+        el.style.transform="translateX(0) scale(0.7)";
+        el.style.opacity="0";
+        el.style.zIndex="0";
+        el.style.pointerEvents="none";
+      }
+    });
   }
 
-  function makeEl(idx){
-    var d=document.createElement('div');
-    d.style.cssText='position:absolute;left:50%;bottom:0;width:100%;max-width:600px;height:'+CARD_H+'px;background:#fff;border-left:1px solid #e5e5e5;border-right:1px solid #e5e5e5;border-top:1px solid #e5e5e5;border-radius:16px 16px 0 0;padding:24px 28px 20px;box-sizing:border-box;display:flex;flex-direction:column;box-shadow:0 -4px 24px rgba(0,0,0,0.06);will-change:transform;transition:transform .6s cubic-bezier(.32,.72,0,1),opacity .5s ease;';
-    d.innerHTML=cardHTML(CARDS[idx]);
-    return d;
-  }
-
-  var els=[];
-  function renderStack(skipTransition){
-    vp.innerHTML='';
-    els=[];
-    for(var i=0;i<3&&current+i<N;i++){
-      var el=makeEl(current+i);
-      var p=POS[i];
-      if(skipTransition) el.style.transition='none';
-      el.style.transform='translateX(-50%) translateY('+p.y+'px) scale('+p.s+')';
-      el.style.zIndex=String(3-i);
-      el.style.opacity=i===0?'1':i===1?'0.85':'0.65';
-      vp.appendChild(el);
-      els.push(el);
-    }
+  // ── DOTS ──
+  function updateDots(){
     dotsC.innerHTML='';
     for(var i=0;i<N;i++){
       var d=document.createElement('div');
-      d.style.cssText='width:7px;height:7px;border-radius:50%;transition:all .3s;cursor:pointer;'+(i===current?'background:#FF6B6B;transform:scale(1.4);':'background:#ddd;');
+      d.style.cssText='width:7px;height:7px;border-radius:50%;cursor:pointer;transition:all .3s;'+(i===current?'background:#FF6B6B;transform:scale(1.4);':'background:#ddd;');
       (function(idx){d.onclick=function(){goTo(idx);};})(i);
       dotsC.appendChild(d);
     }
-    countC.textContent=(current+1)+' / '+N;
+    counterC.textContent=(current+1)+' / '+N;
   }
 
   function goTo(idx){
     if(idx===current||idx<0||idx>=N||animating) return;
+    animating=true;
     current=idx;
-    renderStack();
+    updateLabels();
+    updateCards();
+    updateDots();
+    setTimeout(function(){animating=false;},600);
   }
 
   function next(){
     if(current>=N-1||animating) return false;
-    animating=true;
-    if(els[0]){
-      els[0].style.transform='translateX(-50%) translateY('+CARD_H+'px) scale(1)';
-      els[0].style.opacity='0';
-      els[0].style.zIndex='10';
-    }
-    if(els[1]){
-      els[1].style.transform='translateX(-50%) translateY('+POS[0].y+'px) scale('+POS[0].s+')';
-      els[1].style.opacity='1';
-      els[1].style.zIndex='3';
-    }
-    if(els[2]){
-      els[2].style.transform='translateX(-50%) translateY('+POS[1].y+'px) scale('+POS[1].s+')';
-      els[2].style.opacity='0.85';
-      els[2].style.zIndex='2';
-    }
-    setTimeout(function(){current++;renderStack(true);animating=false;},550);
+    goTo(current+1);
     return true;
   }
-
   function prev(){
     if(current<=0||animating) return false;
-    animating=true;
-    current--;
-    renderStack();
-    setTimeout(function(){animating=false;},550);
+    goTo(current-1);
     return true;
   }
 
-  renderStack(true);
+  // Initial render
+  updateLabels();
+  updateCards();
+  updateDots();
 
-  // ── SCROLL TRAPPING ─────────────────────────────────────────
-  // When the viewport is in view and there are still cards to show,
-  // capture wheel events and block page scroll.
-
+  // ── SCROLL TRAP ──
   function isInView(){
-    var r=vp.getBoundingClientRect();
-    return r.top<window.innerHeight*0.8 && r.bottom>window.innerHeight*0.2;
+    var r=carousel.getBoundingClientRect();
+    return r.top<window.innerHeight*0.7&&r.bottom>window.innerHeight*0.3;
   }
 
-  // Accumulate small wheel deltas until they cross a threshold
   var wheelAcc=0;
-  var WHEEL_THRESHOLD=80;
-
   window.addEventListener('wheel',function(e){
-    if(!isInView()) { wheelAcc=0; return; }
-
-    var goingDown=e.deltaY>0;
-    var goingUp=e.deltaY<0;
-
-    // If at last card and scrolling down, release scroll
-    if(goingDown && current>=N-1){ wheelAcc=0; return; }
-    // If at first card and scrolling up, release scroll
-    if(goingUp && current<=0){ wheelAcc=0; return; }
-
-    // Trap the scroll
+    if(!isInView()){wheelAcc=0;return;}
+    var down=e.deltaY>0;
+    if(down&&current>=N-1){wheelAcc=0;return;}
+    if(!down&&current<=0){wheelAcc=0;return;}
     e.preventDefault();
-
     wheelAcc+=e.deltaY;
-
-    if(Math.abs(wheelAcc)>=WHEEL_THRESHOLD){
-      if(wheelAcc>0) next();
-      else prev();
+    if(Math.abs(wheelAcc)>=80){
+      if(wheelAcc>0)next();else prev();
       wheelAcc=0;
     }
   },{passive:false});
 
-  // Touch support
-  var touchY=0;
-  var touchActive=false;
-  vp.addEventListener('touchstart',function(e){
-    if(isInView()){touchY=e.touches[0].clientY;touchActive=true;}
-  },{passive:true});
-
+  // Touch
+  var ty=0,ta=false;
+  carousel.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;ta=true;},{passive:true});
   window.addEventListener('touchmove',function(e){
-    if(!touchActive||!isInView()) return;
-    var dy=touchY-e.touches[0].clientY;
-    if(dy>0&&current>=N-1) return;
-    if(dy<0&&current<=0) return;
-    if(Math.abs(dy)>30) e.preventDefault();
+    if(!ta||!isInView())return;
+    var dy=ty-e.touches[0].clientY;
+    if(dy>0&&current>=N-1)return;
+    if(dy<0&&current<=0)return;
+    if(Math.abs(dy)>20)e.preventDefault();
   },{passive:false});
-
-  vp.addEventListener('touchend',function(e){
-    if(!touchActive) return;
-    touchActive=false;
-    var dy=touchY-e.changedTouches[0].clientY;
-    if(Math.abs(dy)>40){
-      if(dy>0) next(); else prev();
-    }
+  carousel.addEventListener('touchend',function(e){
+    if(!ta)return;ta=false;
+    var dy=ty-e.changedTouches[0].clientY;
+    if(Math.abs(dy)>40){if(dy>0)next();else prev();}
   },{passive:true});
+
+  // Auto-play (optional, pauses on hover)
+  var autoTimer;
+  function startAuto(){autoTimer=setInterval(function(){if(!next())goTo(0);},4000);}
+  function stopAuto(){clearInterval(autoTimer);}
+  carousel.addEventListener('mouseenter',stopAuto);
+  carousel.addEventListener('mouseleave',startAuto);
+  startAuto();
 })();
 </script>
+
+
 
 
 
