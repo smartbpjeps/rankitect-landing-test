@@ -1684,16 +1684,14 @@
 </section>
 
 <!-- SERVICES -->
-<section id="services" style="padding:0;">
-  <div class="section-inner" style="padding-top:80px;padding-bottom:48px;">
+<section id="services">
+  <div class="section-inner">
     <div class="section-label">Services</div>
     <h2 class="section-title">Des offres claires, des résultats concrets</h2>
-    <p class="section-subtitle" style="max-width:680px;margin:0 auto 0;">Des offres conçues pour couvrir 100% des besoins de votre entreprise en ligne : design, création de site, visibilité Google, conversion et croissance organique.</p>
-  </div>
+    <p class="section-subtitle" style="max-width:680px;margin:0 auto 48px;">Des offres conçues pour couvrir 100% des besoins de votre entreprise en ligne : design, création de site, visibilité Google, conversion et croissance organique.</p>
 
-  <!-- BANDEAU APPEL DÉCOUVERTE -->
-  <div class="section-inner" style="padding-top:0;padding-bottom:32px;">
-    <div style="background:linear-gradient(135deg,rgba(255,107,107,0.06),rgba(255,179,71,0.06));border:1.5px solid rgba(255,107,107,0.2);border-radius:16px;padding:20px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+    <!-- BANDEAU APPEL DÉCOUVERTE -->
+    <div style="background:linear-gradient(135deg,rgba(255,107,107,0.06),rgba(255,179,71,0.06));border:1.5px solid rgba(255,107,107,0.2);border-radius:16px;padding:20px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:48px;">
       <div style="font-size:28px;flex-shrink:0;">📞</div>
       <div style="flex:1;min-width:180px;">
         <div style="font-family:'Rubik',sans-serif;font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Appel découverte</div>
@@ -1704,18 +1702,24 @@
         <a href="#contact" style="display:inline-flex;align-items:center;gap:6px;padding:11px 20px;background:linear-gradient(135deg,#FF6B6B,#FFB347);color:#fff;border-radius:10px;font-size:14px;font-weight:600;font-family:'Rubik',sans-serif;text-decoration:none;">Réserver mon appel →</a>
       </div>
     </div>
-  </div>
 
-  <!-- CARD STACK SCROLL -->
-  <div id="services-stack-outer" style="position:relative;">
-    <div id="services-stack-sticky" style="position:sticky;top:80px;height:calc(100vh - 80px);display:flex;align-items:center;justify-content:center;">
-      <div id="services-stack" style="position:relative;width:min(640px,92vw);"></div>
+    <!-- CARD STACK -->
+    <div id="card-stack-viewport" style="position:relative;width:100%;max-width:640px;margin:0 auto;height:380px;overflow:hidden;">
+      <!-- Cards injected by JS -->
     </div>
-  </div>
+    <div style="display:flex;justify-content:center;gap:6px;margin-top:20px;" id="card-stack-dots"></div>
+    <div style="text-align:center;margin-top:8px;font-family:'Rubik',sans-serif;font-size:12px;color:#a3a3a3;" id="card-stack-counter"></div>
 
-  <!-- Encart optionnel après le stack -->
-  <div class="section-inner" style="padding-top:48px;padding-bottom:80px;">
-    <div style="border:1px dashed #e5e5e5;border-radius:12px;padding:20px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+    <!-- Scroll hint -->
+    <div style="text-align:center;margin-top:12px;">
+      <div style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#a3a3a3;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#ccc;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        Scrollez pour voir les offres
+      </div>
+    </div>
+
+    <!-- Encart optionnel -->
+    <div style="border:1px dashed #e5e5e5;border-radius:12px;padding:20px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:48px;">
       <div style="flex:1;min-width:200px;">
         <div style="font-size:14px;font-weight:600;font-family:'Rubik',sans-serif;color:#404040;margin-bottom:4px;">Optionnel — Après votre projet : accompagnement SEO mensuel à tarif préférentiel</div>
         <div style="font-size:13px;color:#737373;line-height:1.5;">Que ce soit après une migration ou un build, continuez à croître : articles de blog, suivi des positions, optimisations continues.</div>
@@ -1727,8 +1731,147 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
+
+<script>
+(function(){
+  var CARDS = [
+    {icon:"🔍",tag:"One shot",tagColor:"#1a5fa8",tagBg:"#ddeeff",title:"Audit SEO complet",desc:"Positionnement Google, mots-clés manqués, vitesse, Core Web Vitals, structure technique, contenu. Un diagnostic clair et un plan d'action priorisé. Compatible WordPress, Wix, Squarespace, Shopify.",price:"900 €",priceNote:"Livraison en 5 jours ouvrés"},
+    {icon:"🤖",tag:"One shot",tagColor:"#7c3aab",tagBg:"#f0e8fb",title:"Audit + déploiement GEO",desc:"ChatGPT, Perplexity, Gemini citent déjà des entreprises à votre place. On audite votre visibilité IA puis on structure vos contenus : schema markup, llms.txt, architecture optimisée.",price:"500 €",priceNote:"Vos concurrents n'y sont pas encore"},
+    {icon:"📊",tag:"Analytics",tagColor:"#a05c00",tagBg:"#fff3e0",title:"Setup GA4 & tracking complet",desc:"Audit de l'existant, cross-domain tracking, GTM, événements personnalisés, Search Console connectée + appel de restitution. Vous saurez quelle page vous rapporte de l'argent.",priceTiers:[{l:"Essentiel",p:"400–500 €"},{l:"Avancé",p:"600–700 €"},{l:"E-commerce",p:"800 €+"}],priceNote:"Inclus sans surcoût dans tout Build ou Migration"},
+    {icon:"📈",tag:"Mensuel",tagColor:"#1a5fa8",tagBg:"#ddeeff",title:"Accompagnement SEO mensuel",desc:"Mots-clés stratégiques, articles qui attirent vos clients idéaux, suivi des positions chaque mois. Chaque action basée sur ce que vos clients tapent réellement sur Google.",price:"800 €/mois",priceNote:"Compatible WordPress, Wix, Squarespace, Podia"},
+    {icon:"🔄",tag:"Build",tagColor:"#1a7a4a",tagBg:"#e6f7ef",title:"Migration vers WordPress",desc:"Migration Wix, Squarespace ou autre vers WordPress. Conservation du SEO, redirections, architecture optimisée. SEO de base inclus dès le départ.",priceTiers:[{l:"Sans refonte design",p:"2 000 €"},{l:"Avec refonte design",p:"3 500 €"}],priceNote:"Option : accompagnement SEO 600 €/mois"},
+    {icon:"🏗️",tag:"Build",tagColor:"#c0320a",tagBg:"#fdeee9",title:"Build WordPress full custom",desc:"Maquettes sur mesure, développement WordPress, SEO on-page, schema markup, architecture GEO-ready. SEO de base inclus dès le lancement pour ranker dès le jour 1.",price:"3 500 – 7 500 €",priceNote:"Option : accompagnement SEO 600 €/mois",cta:{label:"Obtenir mon estimation",href:"#estimateur"}}
+  ];
+  var N = CARDS.length;
+  var vp = document.getElementById("card-stack-viewport");
+  var dotsC = document.getElementById("card-stack-dots");
+  var countC = document.getElementById("card-stack-counter");
+  if (!vp) return;
+
+  var CARD_H = 340;
+  var positions = [{scale:1,y:12},{scale:0.95,y:-16},{scale:0.9,y:-44}];
+
+  function html(c){
+    var ph;
+    if(c.priceTiers){
+      ph='<div style="display:grid;grid-template-columns:repeat('+c.priceTiers.length+',1fr);gap:8px;margin-top:auto;padding-top:14px;">'+c.priceTiers.map(function(t){return '<div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;text-align:center;"><div style="font-family:Rubik,sans-serif;font-size:13px;font-weight:700;color:#1a1a1a;">'+t.p+'</div><div style="font-size:10px;color:#737373;margin-top:2px;">'+t.l+'</div></div>';}).join('')+'</div>';
+    } else {
+      ph='<div style="margin-top:auto;padding-top:14px;"><span style="font-family:Rubik,sans-serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,#FF6B6B,#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">'+c.price+'</span></div>';
+    }
+    var nt=c.priceNote?'<div style="font-size:11px;color:#a3a3a3;margin-top:4px;">'+c.priceNote+'</div>':'';
+    var ct=c.cta?'<a href="'+c.cta.href+'" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:9px 16px;background:linear-gradient(135deg,#FF6B6B,#FFB347);color:#fff;border-radius:10px;font-size:12px;font-weight:600;font-family:Rubik,sans-serif;text-decoration:none;">'+c.cta.label+' &#8594;</a>':'';
+    return '<div style="margin-bottom:12px;"><span style="font-size:10px;font-weight:700;font-family:Rubik,sans-serif;letter-spacing:.8px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:'+c.tagBg+';color:'+c.tagColor+';">'+c.tag+'</span></div><div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;"><div style="font-size:28px;line-height:1;">'+c.icon+'</div><div style="font-family:Rubik,sans-serif;font-size:18px;font-weight:700;color:#1a1a1a;line-height:1.2;">'+c.title+'</div></div><div style="font-size:13px;color:#525252;line-height:1.6;">'+c.desc+'</div>'+ph+nt+ct;
+  }
+
+  // State: which 3 are visible (indices into CARDS)
+  var current = 0;
+
+  function makeEl(idx){
+    var d=document.createElement('div');
+    d.style.cssText='position:absolute;left:50%;bottom:0;width:100%;max-width:600px;height:'+CARD_H+'px;background:#fff;border-left:1px solid #e5e5e5;border-right:1px solid #e5e5e5;border-top:1px solid #e5e5e5;border-radius:16px 16px 0 0;padding:24px 28px 20px;box-sizing:border-box;display:flex;flex-direction:column;box-shadow:0 -4px 24px rgba(0,0,0,0.06);will-change:transform;';
+    d.innerHTML=html(CARDS[idx]);
+    d.dataset.idx=idx;
+    return d;
+  }
+
+  // Render visible stack (up to 3 cards)
+  var els=[];
+  function renderStack(){
+    vp.innerHTML='';
+    els=[];
+    for(var i=0;i<3&&current+i<N;i++){
+      var el=makeEl(current+i);
+      var p=positions[i];
+      el.style.transform='translateX(-50%) translateY('+p.y+'px) scale('+p.scale+')';
+      el.style.zIndex=String(3-i);
+      el.style.opacity=i===0?'1':i===1?'0.85':'0.65';
+      el.style.transition='transform 0.6s cubic-bezier(0.32,0.72,0,1),opacity 0.5s ease';
+      vp.appendChild(el);
+      els.push(el);
+    }
+    updateUI();
+  }
+
+  function updateUI(){
+    // dots
+    dotsC.innerHTML='';
+    for(var i=0;i<N;i++){
+      var d=document.createElement('div');
+      d.style.cssText='width:7px;height:7px;border-radius:50%;transition:all .3s;cursor:pointer;'+(i===current?'background:#FF6B6B;transform:scale(1.4);':'background:#ddd;');
+      (function(idx){d.onclick=function(){goTo(idx);};})(i);
+      dotsC.appendChild(d);
+    }
+    countC.textContent=(current+1)+' / '+N;
+  }
+
+  function goTo(idx){
+    if(idx===current||idx<0||idx>=N) return;
+    current=idx;
+    renderStack();
+  }
+
+  function next(){
+    if(current>=N-1) return;
+    // Animate current card: fly down and out
+    if(els[0]){
+      els[0].style.transform='translateX(-50%) translateY('+CARD_H+'px) scale(1)';
+      els[0].style.opacity='0';
+      els[0].style.zIndex='10';
+    }
+    // Move behind cards up
+    if(els[1]){
+      var p=positions[0];
+      els[1].style.transform='translateX(-50%) translateY('+p.y+'px) scale('+p.scale+')';
+      els[1].style.opacity='1';
+      els[1].style.zIndex='3';
+    }
+    if(els[2]){
+      var p=positions[1];
+      els[2].style.transform='translateX(-50%) translateY('+p.y+'px) scale('+p.scale+')';
+      els[2].style.opacity='0.85';
+      els[2].style.zIndex='2';
+    }
+    setTimeout(function(){
+      current++;
+      renderStack();
+    },500);
+  }
+
+  function prev(){
+    if(current<=0) return;
+    current--;
+    renderStack();
+  }
+
+  renderStack();
+
+  // SCROLL TRIGGER: use wheel event on the viewport area
+  var scrollCooldown=false;
+  vp.addEventListener('wheel',function(e){
+    if(scrollCooldown) return;
+    if(Math.abs(e.deltaY)<30) return; // ignore tiny scrolls
+    e.preventDefault();
+    scrollCooldown=true;
+    if(e.deltaY>0) next(); else prev();
+    setTimeout(function(){scrollCooldown=false;},800);
+  },{passive:false});
+
+  // Touch swipe support
+  var touchY=0;
+  vp.addEventListener('touchstart',function(e){touchY=e.touches[0].clientY;},{passive:true});
+  vp.addEventListener('touchend',function(e){
+    var dy=touchY-e.changedTouches[0].clientY;
+    if(Math.abs(dy)>40){
+      if(dy>0) next(); else prev();
+    }
+  },{passive:true});
+})();
+</script>
+
+
 
 <!-- POURQUOI CETTE OFFRE EST IMBATTABLE — COMPARATIF PRIX -->
 <section>
@@ -1935,202 +2078,6 @@
 
 
 
-<script>
-(function(){
-  var cards = [
-    {
-      icon:"🔍", tag:"One shot", tagColor:"#1a5fa8", tagBg:"#ddeeff",
-      title:"Audit SEO complet",
-      desc:"Positionnement Google, mots-clés manqués, vitesse, Core Web Vitals, structure technique, contenu. Un diagnostic clair et un plan d'action priorisé. Compatible WordPress, Wix, Squarespace, Shopify.",
-      price:"900 €", priceNote:"Livraison en 5 jours ouvrés"
-    },
-    {
-      icon:"🤖", tag:"One shot", tagColor:"#7c3aab", tagBg:"#f0e8fb",
-      title:"Audit + déploiement GEO",
-      desc:"ChatGPT, Perplexity, Gemini citent déjà des entreprises à votre place. On audite votre visibilité IA puis on structure vos contenus : schema markup, llms.txt, architecture optimisée.",
-      price:"500 €", priceNote:"Vos concurrents n\'y sont pas encore"
-    },
-    {
-      icon:"📊", tag:"Analytics", tagColor:"#a05c00", tagBg:"#fff3e0",
-      title:"Setup GA4 & tracking complet",
-      desc:"Audit de l\'existant, cross-domain tracking, GTM, événements personnalisés, Search Console connectée + appel de restitution. Vous saurez quelle page vous rapporte de l\'argent.",
-      priceTiers:[{label:"Essentiel",price:"400–500 €"},{label:"Avancé",price:"600–700 €"},{label:"E-commerce",price:"800 €+"}],
-      priceNote:"Inclus sans surcoût dans tout Build ou Migration"
-    },
-    {
-      icon:"📈", tag:"Mensuel", tagColor:"#1a5fa8", tagBg:"#ddeeff",
-      title:"Accompagnement SEO mensuel",
-      desc:"Mots-clés stratégiques, articles qui attirent vos clients idéaux, suivi des positions chaque mois. Chaque action basée sur ce que vos clients tapent réellement sur Google.",
-      price:"800 €/mois", priceNote:"Compatible WordPress, Wix, Squarespace, Podia"
-    },
-    {
-      icon:"🔄", tag:"Build", tagColor:"#1a7a4a", tagBg:"#e6f7ef",
-      title:"Migration vers WordPress",
-      desc:"Migration Wix, Squarespace ou autre vers WordPress. Conservation du SEO, redirections, architecture optimisée. SEO de base inclus dès le départ.",
-      priceTiers:[{label:"Sans refonte design",price:"2 000 €"},{label:"Avec refonte design",price:"3 500 €"}],
-      priceNote:"Option : accompagnement SEO 600 €/mois"
-    },
-    {
-      icon:"🏗️", tag:"Build", tagColor:"#c0320a", tagBg:"#fdeee9",
-      title:"Build WordPress full custom",
-      desc:"Maquettes sur mesure, développement WordPress, SEO on-page, schema markup, architecture GEO-ready. SEO de base inclus dès le lancement pour ranker dès le jour 1.",
-      price:"3 500 – 7 500 €", priceNote:"Option : accompagnement SEO 600 €/mois",
-      cta:{label:"Obtenir mon estimation", href:"#estimateur"}
-    }
-  ];
 
-  var stack  = document.getElementById('services-stack');
-  if (!stack) return;
-
-  var outer  = document.getElementById('services-stack-outer');
-  var VH     = window.innerHeight;
-  var STEP   = VH;
-  var CARD_H = Math.min(460, VH * 0.72);
-
-  // Give outer explicit height so page has scroll room
-  outer.style.height = (cards.length * STEP + VH) + 'px';
-
-  // ── build card DOM ──────────────────────────────────────────────
-  function buildCard(c, i) {
-    var el = document.createElement('div');
-    el.style.cssText =
-      'position:absolute;left:0;right:0;top:0;' +
-      'height:' + CARD_H + 'px;' +
-      'background:#fff;border-radius:20px;' +
-      'border:1px solid #e8e8e8;' +
-      'padding:28px 32px 24px;box-sizing:border-box;' +
-      'box-shadow:0 8px 40px rgba(0,0,0,0.10);' +
-      'display:flex;flex-direction:column;' +
-      'will-change:transform,opacity;pointer-events:auto;';
-
-    // price block
-    var priceHtml = '';
-    if (c.priceTiers) {
-      var tiers = c.priceTiers.map(function(t){
-        return '<div style="background:#f5f5f5;border-radius:10px;padding:10px 12px;text-align:center;">' +
-               '<div style="font-family:Rubik,sans-serif;font-size:14px;font-weight:700;color:#1a1a1a;">'+t.price+'</div>' +
-               '<div style="font-size:11px;color:#737373;margin-top:2px;">'+t.label+'</div></div>';
-      }).join('');
-      priceHtml = '<div style="display:grid;grid-template-columns:repeat('+c.priceTiers.length+',1fr);gap:8px;margin-top:auto;padding-top:16px;">'+tiers+'</div>';
-    } else {
-      priceHtml = '<div style="margin-top:auto;padding-top:16px;">' +
-        '<span style="font-family:Rubik,sans-serif;font-size:30px;font-weight:700;background:linear-gradient(135deg,#FF6B6B,#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">' + c.price + '</span></div>';
-    }
-
-    var noteHtml = c.priceNote
-      ? '<div style="font-size:11px;color:#a3a3a3;margin-top:6px;">'+c.priceNote+'</div>' : '';
-    var ctaHtml  = c.cta
-      ? '<a href="'+c.cta.href+'" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:10px 18px;background:linear-gradient(135deg,#FF6B6B,#FFB347);color:#fff;border-radius:10px;font-size:13px;font-weight:600;font-family:Rubik,sans-serif;text-decoration:none;width:fit-content;">'+c.cta.label+' &#8594;</a>' : '';
-
-    el.innerHTML =
-      '<div style="margin-bottom:14px;">' +
-        '<span style="display:inline-block;font-size:11px;font-weight:700;font-family:Rubik,sans-serif;letter-spacing:.8px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:'+c.tagBg+';color:'+c.tagColor+';">'+c.tag+'</span>' +
-      '</div>' +
-      '<div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;">' +
-        '<div style="font-size:32px;line-height:1;flex-shrink:0;">'+c.icon+'</div>' +
-        '<div style="font-family:Rubik,sans-serif;font-size:20px;font-weight:700;color:#1a1a1a;line-height:1.25;">'+c.title+'</div>' +
-      '</div>' +
-      '<div style="font-size:14px;color:#525252;line-height:1.65;">'+c.desc+'</div>' +
-      priceHtml + noteHtml + ctaHtml;
-
-    return el;
-  }
-
-  var cardEls = cards.map(function(c, i){ var el = buildCard(c, i); stack.appendChild(el); return el; });
-  stack.style.height = CARD_H + 'px';
-  stack.style.overflow = 'visible';
-
-  // ── dots ────────────────────────────────────────────────────────
-  var sticky = document.getElementById('services-stack-sticky');
-  sticky.style.position = 'relative';
-
-  var dotsWrap = document.createElement('div');
-  dotsWrap.style.cssText = 'position:absolute;right:-28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:10;';
-  var dotEls = cards.map(function(_, i){
-    var d = document.createElement('div');
-    d.style.cssText = 'width:6px;height:6px;border-radius:50%;background:#ddd;transition:background .3s,transform .3s;cursor:pointer;';
-    dotsWrap.appendChild(d);
-    return d;
-  });
-  sticky.appendChild(dotsWrap);
-
-  // ── render ──────────────────────────────────────────────────────
-  var lastIdx = -1;
-
-  function render() {
-    if (!outer) return;
-    var scrolled = -outer.getBoundingClientRect().top;
-    // raw progress: 0 at first card, N-1 at last
-    var raw = scrolled / STEP;
-    var idx = Math.max(0, Math.min(cards.length - 1, Math.floor(raw)));
-    // how far through the current step (0→1)
-    var frac = raw - Math.floor(raw);
-
-    cardEls.forEach(function(el, i) {
-      var rel = i - idx;   // negative = past, 0 = active, positive = upcoming
-
-      if (rel < -1) {
-        // fully gone
-        el.style.transition = 'none';
-        el.style.transform   = 'translateY(' + (CARD_H + 60) + 'px) scale(0.9)';
-        el.style.opacity     = '0';
-        el.style.zIndex      = '0';
-        return;
-      }
-
-      if (rel === -1) {
-        // leaving card: slides up and fades as frac goes 0→1
-        var progress = frac;           // 0 = still visible, 1 = gone
-        var ty = -progress * (CARD_H * 0.25 + 40);
-        var sc = 1 - progress * 0.06;
-        el.style.transition  = 'none';
-        el.style.transform   = 'translateY('+ty+'px) scale('+sc+')';
-        el.style.opacity     = String(Math.max(0, 1 - progress * 2));
-        el.style.zIndex      = String(cards.length + 2);
-        return;
-      }
-
-      if (rel === 0) {
-        // entering card: slides in from below as frac goes 0→1
-        // when frac=0 it's at the top (just became active), fully visible
-        el.style.transition  = 'none';
-        el.style.transform   = 'translateY(0) scale(1)';
-        el.style.opacity     = '1';
-        el.style.zIndex      = String(cards.length + 1);
-        return;
-      }
-
-      // upcoming cards stacked behind
-      var stackPos = Math.min(rel, 3);
-      var stackY   = [-38, -24, -12, 0][3 - stackPos] * -1;
-      var stackS   = [0.88, 0.92, 0.96, 1][4 - Math.min(stackPos,3) - 1];
-      var stackO   = [0.15, 0.35, 0.6][Math.min(rel - 1, 2)];
-
-      el.style.transition = 'none';
-      el.style.transform  = 'translateY('+stackY+'px) scale('+stackS+')';
-      el.style.opacity    = String(stackO);
-      el.style.zIndex     = String(Math.max(0, cards.length - rel));
-    });
-
-    // dots
-    if (idx !== lastIdx) {
-      dotEls.forEach(function(d, i){
-        d.style.background = i === idx ? '#FF6B6B' : '#ddd';
-        d.style.transform  = i === idx ? 'scale(1.6)' : 'scale(1)';
-      });
-      lastIdx = idx;
-    }
-  }
-
-  window.addEventListener('scroll', render, {passive:true});
-  window.addEventListener('resize', function(){
-    VH = window.innerHeight;
-    STEP = VH;
-    outer.style.height = (cards.length * STEP + VH) + 'px';
-    render();
-  });
-  render();
-})();
-</script>
 </body>
 </html>
