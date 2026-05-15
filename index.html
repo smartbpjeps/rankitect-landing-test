@@ -1754,7 +1754,6 @@
   var N=OFFERS.length;
   var current=0;
   var animating=false;
-  var trapped=false;
   var ITEM_H=58;
 
   var labelsC=document.getElementById("svc-labels");
@@ -1764,7 +1763,6 @@
   var carousel=document.getElementById("svc-carousel");
   if(!labelsC||!cardArea) return;
 
-  // ── BUILD LEFT LABELS ──
   var labelEls=[];
   OFFERS.forEach(function(o,i){
     var el=document.createElement("button");
@@ -1781,29 +1779,19 @@
       var y=dist*ITEM_H;
       var op=1-Math.abs(dist)*0.22;
       if(i===current){
-        el.style.transform="translateY("+y+"px)";
-        el.style.opacity="1";
-        el.style.background="#fff";
-        el.style.color="#FF6B6B";
-        el.style.borderColor="#fff";
-        el.style.zIndex="10";
+        el.style.transform="translateY("+y+"px)";el.style.opacity="1";
+        el.style.background="#fff";el.style.color="#FF6B6B";el.style.borderColor="#fff";el.style.zIndex="10";
       } else {
-        el.style.transform="translateY("+y+"px)";
-        el.style.opacity=String(Math.max(0,op));
-        el.style.background="transparent";
-        el.style.color="rgba(255,255,255,0.55)";
-        el.style.borderColor="rgba(255,255,255,0.2)";
-        el.style.zIndex="1";
+        el.style.transform="translateY("+y+"px)";el.style.opacity=String(Math.max(0,op));
+        el.style.background="transparent";el.style.color="rgba(255,255,255,0.55)";el.style.borderColor="rgba(255,255,255,0.2)";el.style.zIndex="1";
       }
     });
   }
 
-  // ── BUILD RIGHT CARDS ──
   var cardEls=[];
   OFFERS.forEach(function(o,i){
     var el=document.createElement("div");
     el.style.cssText="position:absolute;inset:0;border-radius:24px;overflow:hidden;background:#fff;border:1px solid #e5e5e5;box-shadow:0 8px 40px rgba(0,0,0,0.08);display:flex;flex-direction:column;padding:28px 24px 22px;box-sizing:border-box;transition:all .55s cubic-bezier(.32,.72,0,1);";
-
     var ph;
     if(o.tiers){
       ph='<div style="display:grid;grid-template-columns:repeat('+o.tiers.length+',1fr);gap:8px;margin-top:auto;padding-top:16px;">'+o.tiers.map(function(t){return '<div style="background:#f5f5f5;border-radius:10px;padding:10px 10px;text-align:center;"><div style="font-family:Rubik,sans-serif;font-size:14px;font-weight:700;color:#1a1a1a;">'+t.p+'</div><div style="font-size:10px;color:#737373;margin-top:2px;">'+t.l+'</div></div>';}).join('')+'</div>';
@@ -1812,13 +1800,10 @@
     }
     var nt=o.note?'<div style="font-size:11px;color:#a3a3a3;margin-top:6px;">'+o.note+'</div>':'';
     var ct=o.cta?'<a href="'+o.cta.href+'" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:10px 18px;background:linear-gradient(135deg,#FF6B6B,#FFB347);color:#fff;border-radius:10px;font-size:12px;font-weight:600;font-family:Rubik,sans-serif;text-decoration:none;">'+o.cta.label+' &#8594;</a>':'';
-
     el.innerHTML=
       '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;"><span style="font-size:36px;line-height:1;">'+o.icon+'</span><span style="font-size:10px;font-weight:700;font-family:Rubik,sans-serif;letter-spacing:.8px;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:rgba(255,107,107,0.08);color:#FF6B6B;">'+o.tag+'</span></div>'+
       '<div style="font-family:Rubik,sans-serif;font-size:20px;font-weight:700;color:#1a1a1a;margin-bottom:10px;line-height:1.2;">'+o.title+'</div>'+
-      '<div style="font-size:14px;color:#525252;line-height:1.6;">'+o.desc+'</div>'+
-      ph+nt+ct;
-
+      '<div style="font-size:14px;color:#525252;line-height:1.6;">'+o.desc+'</div>'+ph+nt+ct;
     cardArea.appendChild(el);
     cardEls.push(el);
   });
@@ -1826,19 +1811,10 @@
   function updateCards(){
     cardEls.forEach(function(el,i){
       var diff=i-current;
-      if(diff===0){
-        el.style.transform="translateX(0) scale(1) rotate(0deg)";
-        el.style.opacity="1";el.style.zIndex="20";el.style.pointerEvents="auto";
-      } else if(diff===-1){
-        el.style.transform="translateX(-80px) scale(0.88) rotate(-3deg)";
-        el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";
-      } else if(diff===1){
-        el.style.transform="translateX(80px) scale(0.88) rotate(3deg)";
-        el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";
-      } else {
-        el.style.transform="translateX(0) scale(0.7)";
-        el.style.opacity="0";el.style.zIndex="0";el.style.pointerEvents="none";
-      }
+      if(diff===0){el.style.transform="translateX(0) scale(1) rotate(0deg)";el.style.opacity="1";el.style.zIndex="20";el.style.pointerEvents="auto";}
+      else if(diff===-1){el.style.transform="translateX(-80px) scale(0.88) rotate(-3deg)";el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";}
+      else if(diff===1){el.style.transform="translateX(80px) scale(0.88) rotate(3deg)";el.style.opacity="0.35";el.style.zIndex="10";el.style.pointerEvents="none";}
+      else{el.style.transform="translateX(0) scale(0.7)";el.style.opacity="0";el.style.zIndex="0";el.style.pointerEvents="none";}
     });
   }
 
@@ -1855,117 +1831,54 @@
 
   function goTo(idx){
     if(idx===current||idx<0||idx>=N||animating) return;
-    animating=true;
-    current=idx;
+    animating=true;current=idx;
     updateLabels();updateCards();updateDots();
     setTimeout(function(){animating=false;},600);
   }
-
   function next(){if(current>=N-1||animating)return false;goTo(current+1);return true;}
   function prev(){if(current<=0||animating)return false;goTo(current-1);return true;}
 
   updateLabels();updateCards();updateDots();
 
-  // ── SCROLL LOCK ──
-  // When trapped: body overflow hidden, no page jump.
-  // Enter trap when carousel scrolls into center of viewport.
-  // Exit trap when user scrolls past last/first card.
-
-  var savedScrollY=0;
-  var savedBodyOverflow='';
-  var savedBodyPosition='';
-  var savedBodyTop='';
-  var savedBodyWidth='';
-
-  function lockScroll(){
-    if(trapped) return;
-    trapped=true;
-    savedScrollY=window.scrollY;
-    savedBodyOverflow=document.body.style.overflow;
-    savedBodyPosition=document.body.style.position;
-    savedBodyTop=document.body.style.top;
-    savedBodyWidth=document.body.style.width;
-    document.body.style.overflow='hidden';
-    document.body.style.position='fixed';
-    document.body.style.top=(-savedScrollY)+'px';
-    document.body.style.width='100%';
-  }
-
-  function unlockScroll(){
-    if(!trapped) return;
-    trapped=false;
-    document.body.style.overflow=savedBodyOverflow;
-    document.body.style.position=savedBodyPosition;
-    document.body.style.top=savedBodyTop;
-    document.body.style.width=savedBodyWidth;
-    window.scrollTo(0,savedScrollY);
-  }
-
-  function carouselInView(){
-    var r=carousel.getBoundingClientRect();
-    var vh=window.innerHeight;
-    // Carousel center is in the viewport middle third
-    var center=r.top+r.height/2;
-    return center>vh*0.15 && center<vh*0.85;
-  }
-
-  // Track if we should enter the trap
-  var enteredOnce=false;
-  window.addEventListener('scroll',function(){
-    if(trapped) return;
-    if(carouselInView()&&!enteredOnce){
-      // Don't auto-enter, wait for first wheel
-    }
-  },{passive:true});
+  // ── SIMPLE WHEEL CAPTURE ──
+  // Only preventDefault when carousel is well in view AND there are cards to navigate to.
+  // No body manipulation. Just eat the wheel event.
 
   var wheelAcc=0;
-  window.addEventListener('wheel',function(e){
+  var lastWheelTime=0;
+
+  carousel.addEventListener('wheel',function(e){
     var down=e.deltaY>0;
-    var up=e.deltaY<0;
 
-    if(trapped){
-      e.preventDefault();
+    // At boundaries: let scroll pass through naturally
+    if(down && current>=N-1) return;
+    if(!down && current<=0) return;
+
+    // Carousel captures the scroll
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Debounce rapid wheel events
+    var now=Date.now();
+    if(now-lastWheelTime<100){
       wheelAcc+=e.deltaY;
-      if(Math.abs(wheelAcc)<60) return;
+    } else {
+      wheelAcc=e.deltaY;
+    }
+    lastWheelTime=now;
 
-      var moved=false;
-      if(wheelAcc>0) moved=next();
-      else moved=prev();
+    if(Math.abs(wheelAcc)>=50){
+      if(wheelAcc>0) next(); else prev();
       wheelAcc=0;
-
-      // If couldn't move (at boundary), unlock and let page scroll
-      if(!moved){
-        unlockScroll();
-        enteredOnce=true;
-        // Reset after a bit so re-scrolling back in can re-trap
-        setTimeout(function(){enteredOnce=false;},1500);
-      }
-      return;
     }
-
-    // Not trapped: check if we should trap
-    if(!carouselInView()){wheelAcc=0;return;}
-
-    // Entering: only trap if there are cards in the scroll direction
-    if(down && current<N-1){
-      e.preventDefault();
-      lockScroll();
-      wheelAcc=e.deltaY;
-    } else if(up && current>0){
-      e.preventDefault();
-      lockScroll();
-      wheelAcc=e.deltaY;
-    }
-    // Otherwise let scroll pass through
   },{passive:false});
 
   // Touch
   var ty=0,ta=false;
   carousel.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;ta=true;},{passive:true});
-  window.addEventListener('touchmove',function(e){
+  carousel.addEventListener('touchmove',function(e){
     if(!ta) return;
     var dy=ty-e.touches[0].clientY;
-    if(!carouselInView()) return;
     if(dy>0&&current>=N-1) return;
     if(dy<0&&current<=0) return;
     if(Math.abs(dy)>20) e.preventDefault();
@@ -1980,8 +1893,8 @@
   var autoTimer;
   function startAuto(){autoTimer=setInterval(function(){if(!next())goTo(0);},4000);}
   function stopAuto(){clearInterval(autoTimer);}
-  carousel.addEventListener('mouseenter',function(){stopAuto();});
-  carousel.addEventListener('mouseleave',function(){startAuto();});
+  carousel.addEventListener('mouseenter',stopAuto);
+  carousel.addEventListener('mouseleave',startAuto);
   startAuto();
 })();
 </script>
